@@ -1,3 +1,4 @@
+%% Updated 12_9_2014_03:36 am
 
 %% bare_conf.tex
 %% V1.3
@@ -72,8 +73,6 @@
 
 
 
-
-
 % Some very useful LaTeX packages include:
 % (uncomment the ones you want to load)
 
@@ -98,9 +97,6 @@
 
 
 
-
-
-
 % *** CITATION PACKAGES ***
 %
 %\usepackage{cite}
@@ -118,9 +114,6 @@
 % The latest version can be obtained at:
 % http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
 % The documentation is contained in the cite.sty file itself.
-
-
-
 
 
 
@@ -166,10 +159,8 @@
 
 
 
-
-
 % *** MATH PACKAGES ***
-%
+%Using package amssymb
 %\usepackage[cmex10]{amsmath}
 % A popular package from the American Mathematical Society that provides
 % many useful and powerful commands for dealing with mathematics. If using
@@ -186,8 +177,6 @@
 % does. amsmath.sty is already installed on most LaTeX systems. The latest
 % version and documentation can be obtained at:
 % http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
-
-
 
 
 
@@ -360,13 +349,13 @@
 % affiliations
 \author{\IEEEauthorblockN{Junseok Lee}
 \IEEEauthorblockA{Department of Computer \\ Science and Engineering\\
-Texas A \&\ M University\\
+Texas A\&M\ University\\
 College Station, Texas 77843\\
 Email: junseogi44@tamu.edu}
 \and
 \IEEEauthorblockN{Wookyung An}
 \IEEEauthorblockA{Department of Computer \\ Science and Engineering\\
-Texas A \&\ M University\\
+Texas A\&M\ University\\
 College Station, Texas 77843\\
 Email: a@tamu.edu}}
 
@@ -392,18 +381,11 @@ Email: a@tamu.edu}}
 %Telephone: (800) 555--1212, Fax: (888) 555--1212}
 %\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
 
-
-
-
 % use for special paper notices
 %\IEEEspecialpapernotice{(Invited Paper)}
 
-
-
-
 % make the title area
 \maketitle
-
 
 \begin{abstract}
 %\boldmath
@@ -432,16 +414,22 @@ The abstract goes here.\cite{IEEEhowto:kopka}
 \IEEEpeerreviewmaketitle
 
 
-
 \section{Introduction}
+\subsection{Motivation}
+\subsection{Background}
+\subsubsection{KESM}
+
+Knife Edge Scanning Microscope was developed in Brain Networks Laboratory (BNL) at Texas A\&M\ University. It will allow the reconstruction of mammalian brain architecture. The instrument has been designed to volume digitize at 200MHz a specimen (e.g., a plastic-embedded tissue block) at 250nm sampling resolution. The instrument delivers an aligned three-dimensional mesh of uniform volume elements (voxels): Voxels are assigned digital signal amplitudes for each optical channel (wavelength) used in scanning the specimen. Physical sectioning is used to circumvent photon-limited image capture (a speed requirement). No deconvolution of the imagery is necessary. The speed of the instrument is such that we anticipate an entire mouse brain($\sim$ $1cm^3$) can be scanned in one month (one-shift operation). Development of the Brain Tissue Scanner Bruce H. McCormick http://research.cs.tamu.edu/bnl/pubs/McC02.pdf
+
+
+\paragraph{Data}
 % no \IEEEPARstart
 This demo file is intended to serve as a ``starter file''
 for IEEE conference papers produced under \LaTeX\ using
 IEEEtran.cls version 1.7 and later.
 % You must have at least 2 lines in the paragraph with the drop letter
 % (should never be an issue)
-I wish you the best of success.\cite{IEEEhowto:wenj
-ie}
+I wish you the best of success.\cite{IEEEhowto:wenjie}
 
 \hfill mds
  
@@ -543,13 +531,12 @@ Subsubsection text here.
 
 The conclusion goes here.
 
-\begin{figure}[!t]
+\begin{figure}
 \centering
-\includegraphics[width=0.45\textwidth]{algorithm.jpg}
-\caption{Simulation Results}
-\label{fig_sim}
+\includegraphics[width=0.5\textwidth]{algorithm.jpg}
+\caption{This is an inserted EPS graphic}
+\label{fig1}
 \end{figure}
-
 
 
 % conference papers do not normally have an appendix
