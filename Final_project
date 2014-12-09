@@ -584,8 +584,7 @@ The authors would like to thank...
 \begin{thebibliography}{1}
 
 \bibitem{Kau}
-Kaufhold, John P., et al.  \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+Kaufhold, John P., et al.  \emph{Vectorization of optically sectioned brain microvasculature: Learning aids completion of vascular graphs by connecting gaps and deleting open-ended segments}\hskip 1em plus 0.5em minus 0.4em\relax Medical image analysis 16.6 (2012): 1241-1258.
   
 \bibitem{Mayerich}  
 D. Mayerich, L. Abbott and B. Mccormick, \emph{Knife-edge scanning microscopy for imaging and reconstruction of three-dimensional anatomical structures of the mouse brain,} \hskip 1em plus
@@ -612,6 +611,7 @@ Yoonsuck Choe, David Mayerich, Jaerock Kwon, Daniel E. Miller, Ji Ryang Chung,Ch
 \bibitem{wenjie}
 H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 2014.
+  
 
 \end{thebibliography}
 
@@ -619,5 +619,3 @@ H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
 
 % that's all folks
 \end{document}
-
-
