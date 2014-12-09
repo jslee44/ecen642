@@ -1,4 +1,5 @@
-%% Updated 12_9_2014_04:04 am
+%% Updated 12_9_2014_05:30 am
+
 
 %% bare_conf.tex
 %% V1.3
@@ -419,22 +420,31 @@ The structure of graph connectivity in mammalian brain is necessary to understan
 \subsection{Motivation}
 \subsection{Background}
 \subsubsection{KESM}
+Knife Edge Scanning Microscope was developed in Brain Networks Laboratory (BNL) at Texas A\&M\ University. It will allow the reconstruction of mammalian brain architecture. The instrument has been designed to volume digitize at 200MHz a specimen (e.g., a plastic-embedded tissue block) at 250nm sampling resolution. The instrument delivers an aligned three-dimensional mesh of uniform volume elements (voxels): Voxels are assigned digital signal amplitudes for each optical channel (wavelength) used in scanning the specimen. Physical sectioning is used to circumvent photon-limited image capture (a speed requirement). No deconvolution of the imagery is necessary. The speed of the instrument is such that we anticipate an entire mouse brain($\sim$ $1cm^3$) can be scanned in one month (one-shift operation). \cite{McCormick} Fig. 1 shows the structure of the instrument. The imaging principle of KESM is shown in Fig. 2. The objective and the knife is held in place, while the specimen
+affixed on the positioning stage moves, and gets scraped
+against the diamond knife, generating a thin section flowing
+over the knife. Line-scan imaging is done near the very tip
+of the knife where the distortion is minimal. Illumination is
+provided through the diamond knife (green beam indicates the light path). \cite{Yoonsuck}
 
-Knife Edge Scanning Microscope was developed in Brain Networks Laboratory (BNL) at Texas A\&M\ University. It will allow the reconstruction of mammalian brain architecture. The instrument has been designed to volume digitize at 200MHz a specimen (e.g., a plastic-embedded tissue block) at 250nm sampling resolution. The instrument delivers an aligned three-dimensional mesh of uniform volume elements (voxels): Voxels are assigned digital signal amplitudes for each optical channel (wavelength) used in scanning the specimen. Physical sectioning is used to circumvent photon-limited image capture (a speed requirement). No deconvolution of the imagery is necessary. The speed of the instrument is such that we anticipate an entire mouse brain($\sim$ $1cm^3$) can be scanned in one month (one-shift operation). Development of the Brain Tissue Scanner Bruce H. McCormick http://research.cs.tamu.edu/bnl/pubs/McC02.pdf
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{KESM.jpg}
+\caption{A photo of the Knife-Edge Scanning Microscope (KESM). (1) high speed line-scan camera, (2) microscope objective, (3) diamond knife and light collimator,(4) water immersion specimen tank, (5) air-bearing three-axes precision stage, (6)white-light illuminator, (7) water pump (in the back), (8) computer server installed
+with image acquisition and stage controller boards, (9) granite base, and (10) granite bridge. Adapted from \cite{Mayerich}\cite{Choe}}
+\label{fig1}
+\end{figure}
 
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{KESM_closeup.jpg}
+\caption{Tissue Sectioning and Imaging in KESM. Adapted from \cite{Mayerich}\cite{Choe}}
+\label{fig2}
+\end{figure}
 
-\paragraph{Data}
-% no \IEEEPARstart
-This demo file is intended to serve as a ``starter file''
-for IEEE conference papers produced under \LaTeX\ using
-IEEEtran.cls version 1.7 and later.
-% You must have at least 2 lines in the paragraph with the drop letter
-% (should never be an issue)
-I wish you the best of success.\cite{IEEEhowto:wenjie}
-
-\hfill mds
- 
-\hfill January 11, 2007
+\subsubsection{KESM Mouse Brain Data}
+Using KESM, we have been able to obtain whole-brainscale
+data from the mouse. \cite{Yoonsuck}
 
 \subsection{Subsection Heading Here}
 Subsection text here.
@@ -532,12 +542,7 @@ Subsubsection text here.
 
 The conclusion goes here.
 
-\begin{figure}
-\centering
-\includegraphics[width=0.5\textwidth]{algorithm.jpg}
-\caption{This is an inserted EPS graphic}
-\label{fig1}
-\end{figure}
+
 
 
 % conference papers do not normally have an appendix
@@ -580,7 +585,30 @@ The authors would like to thank...
 \bibitem{Kau}
 Kaufhold, John P., et al.  \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
-\bibitem{IEEEhowto:wenjie}
+  
+\bibitem{Mayerich}  
+D. Mayerich, L. Abbott and B. Mccormick, \emph{Knife-edge scanning microscopy for imaging and reconstruction of three-dimensional anatomical structures of the mouse brain,} \hskip 1em plus
+  0.5em minus 0.4em Journal of Microscopy, Vol. 231, Pt 1 2008, pp. 134$\sim$143.
+  
+\bibitem{Choe}  
+Y. Choe, L. C. Abbott, D. Han, P.-S. Huang, J. Keyser, J. Kwon,
+D. Mayerich, Z. Melek, and B. H. McCormick, \emph{Knife-edge scanning
+microscopy: High-throughput imaging and analysis of massive
+volumes of biological microstructures}, \hskip 1em plus
+  0.5em minus 0.4em in High-Throughput Image
+Reconstruction and Analysis: Intelligent Microscopy Applications,
+A. R. Rao and G. Cecchi, Eds. Boston, MA: Artech House, 2008,
+pp. 11$\sim$37.
+
+\bibitem{McCormick} 
+Bruce H. McCormick, \emph{Development of the Brain Tissue Scanner}, \hskip 1em plus 0.5em minus 0.4em Brain Networks Laboratory Technical Report, 2002.
+
+\bibitem{Yoonsuck} 
+Yoonsuck Choe, David Mayerich, Jaerock Kwon, Daniel E. Miller, Ji Ryang Chung,Chul Sung, John Keyser, and Louise C. Abbott, \emph{Knife-Edge Scanning Microscopy for Connectomics Research}
+\hskip 1em plus 0.5em minus 0.4em Neural Networks (IJCNN), The 2011 International Joint Conference, July 31 2011-Aug. 5 2011, pp. 2258$\sim$2265
+  
+  
+\bibitem{wenjie}
 H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 2014.
 
