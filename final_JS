@@ -1,4 +1,5 @@
-%% Updated 12_9_2014_05:20 am
+%% Updated 12_9_2014_17:05 
+
 
 %% bare_conf.tex
 %% V1.3
@@ -71,7 +72,7 @@
 % manually specify the path to it like:
 % \documentclass[conference]{../sty/IEEEtran}
 
-
+\usepackage{textgreek}
 
 % Some very useful LaTeX packages include:
 % (uncomment the ones you want to load)
@@ -177,6 +178,7 @@
 % does. amsmath.sty is already installed on most LaTeX systems. The latest
 % version and documentation can be obtained at:
 % http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+%\usepackage{mathtools}
 
 
 
@@ -308,151 +310,6 @@
 % cuted.sty or midfloat.sty packages (also by Sigitas Tolusis) as IEEE does
 % not format its papers in such ways.
 
-
-
-
-
-% *** PDF, URL AND HYPERLINK PACKAGES ***
-%
-%\usepackage{url}
-% url.sty was written by Donald Arseneau. It provides better support for
-% handling and breaking URLs. url.sty is already installed on most LaTeX
-% systems. The latest version can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/misc/
-% Read the url.sty source comments for usage information. Basically,
-% \url{my_url_here}.
-
-
-
-
-
-% *** Do not adjust lengths that control margins, column widths, etc. ***
-% *** Do not use packages that alter fonts (such as pslatex).         ***
-% There should be no need to do such things with IEEEtran.cls V1.6 and later.
-% (Unless specifically asked to do so by the journal or conference you plan
-% to submit to, of course. )
-
-
-% correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor}
-\usepackage{graphicx}
-
-\begin{document}
-%
-% paper title
-% can use linebreaks \\ within to get better formatting as desired
-\title{Segmentation of Nissl stained mouse brain data set and its 3D visualization}
-
-
-% author names and affiliations
-% use a multiple column layout for up to three different
-% affiliations
-\author{\IEEEauthorblockN{Junseok Lee}
-\IEEEauthorblockA{Department of Computer \\ Science and Engineering\\
-Texas A\&M\ University\\
-College Station, Texas 77843\\
-Email: junseogi44@tamu.edu}
-\and
-\IEEEauthorblockN{Wookyung An}
-\IEEEauthorblockA{Department of Computer \\ Science and Engineering\\
-Texas A\&M\ University\\
-College Station, Texas 77843\\
-Email: a@tamu.edu}}
-
-% conference papers do not typically use \thanks and this command
-% is locked out in conference mode. If really needed, such as for
-% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
-% after \documentclass
-
-% for over three affiliations, or if they all won't fit within the width
-% of the page, use this alternative format:
-% 
-%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
-%Homer Simpson\IEEEauthorrefmark{2},
-%James Kirk\IEEEauthorrefmark{3}, 
-%Montgomery Scott\IEEEauthorrefmark{3} and
-%Eldon Tyrell\IEEEauthorrefmark{4}}
-%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
-%Georgia Institute of Technology,
-%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
-%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
-%Email: homer@thesimpsons.com}
-%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
-%Telephone: (800) 555--1212, Fax: (888) 555--1212}
-%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
-
-% use for special paper notices
-%\IEEEspecialpapernotice{(Invited Paper)}
-
-% make the title area
-\maketitle
-
-\begin{abstract}
-%\boldmath
-The structure of graph connectivity in mammalian brain is necessary to understand essential requirement of function and its relationship. Brain microvasculature is one of the representation of brain activity as well as graph connectivity. For this reason, analyzing its connectivity with coordinated activity of large numbers of neurons, tracing the vasculature plays important role to analyze how function of neural circuits can be constructed. For example, blood flow in brain contains clinical importance in neurological disease. To vectorize and visualize microvasculature in 3D space, there are three undepining steps: (1) data acquisition, (2) image segmentation, and (3) Vectorization. Knife Edge Scanning Microscope (KESM) is the instrument that developed by Brain Network Laboratory (BNL) in Texas A\&M, which helps physical sectioning in various planes, i.e, sagittal coronal. By using KESM, it is possible to acquire the anatomical structure of entire mouse brain. However, there is technical realities such as detetor noise, signal scatter, refractive aberrations, and acquisition speed while sectioning can degrade the quality of image. \cite{Kau} Furthermore, since Nissl stained image which stains cell bodies and endoplasmic reticulum has various type of background intensities, it is hard to segment desired region as we wish. To solve these issues, we analyzed the problem in order to segment blood vessel for rendering centerline of microvasculature and applied image processing techniques: (1) Anisotropic diffusion filtering, (2) Median Filtering, (3) Otsu's multiple threshold, and (4) Rescaling intensity. Then, we reconstructed 3D volumetric data and rendered centerlines based on the 3D volume which generated from image processing process. Finally, we rendered 3D vectorized volume including elimination of duplicated filament. Overall, preprocessing step for 3D visualization of microvasculature with Nissl stained image is promising in terms of comprehending details of neural circuits and its relationship.  
-
-\end{abstract}
-% IEEEtran.cls defaults to using nonbold math in the Abstract.
-% This preserves the distinction between vectors and scalars. However,
-% if the conference you are submitting to favors bold math in the abstract,
-% then you can use LaTeX's standard command \boldmath at the very start
-% of the abstract to achieve this. Many IEEE journals/conferences frown on
-% math in the abstract anyway.
-
-% no keywords
-
-
-
-
-% For peer review papers, you can put extra information on the cover
-% page as needed:
-% \ifCLASSOPTIONpeerreview
-% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
-% \fi
-%
-% For peerreview papers, this IEEEtran command inserts a page break and
-% creates the second title. It will be ignored for other modes.
-\IEEEpeerreviewmaketitle
-
-
-\section{Introduction}
-\subsection{Motivation}
-\subsection{Background}
-\subsubsection{KESM}
-Knife Edge Scanning Microscope was developed in Brain Networks Laboratory (BNL) at Texas A\&M\ University. It will allow the reconstruction of mammalian brain architecture. The instrument has been designed to volume digitize at 200MHz a specimen (e.g., a plastic-embedded tissue block) at 250nm sampling resolution. The instrument delivers an aligned three-dimensional mesh of uniform volume elements (voxels): Voxels are assigned digital signal amplitudes for each optical channel (wavelength) used in scanning the specimen. Physical sectioning is used to circumvent photon-limited image capture (a speed requirement). No deconvolution of the imagery is necessary. The speed of the instrument is such that we anticipate an entire mouse brain($\sim$ $1cm^3$) can be scanned in one month (one-shift operation). \cite{McCormick} Fig. 1 shows the structure of the instrument. The imaging principle of KESM is shown in Fig. 2. The objective and the knife is held in place, while the specimen
-affixed on the positioning stage moves, and gets scraped
-against the diamond knife, generating a thin section flowing
-over the knife. Line-scan imaging is done near the very tip
-of the knife where the distortion is minimal. Illumination is
-provided through the diamond knife (green beam indicates the light path). \cite{Yoonsuck}
-
-\begin{figure}
-\centering
-\includegraphics[width=0.5\textwidth]{KESM.jpg}
-\caption{A photo of the Knife-Edge Scanning Microscope (KESM). (1) high speed line-scan camera, (2) microscope objective, (3) diamond knife and light collimator,(4) water immersion specimen tank, (5) air-bearing three-axes precision stage, (6)white-light illuminator, (7) water pump (in the back), (8) computer server installed
-with image acquisition and stage controller boards, (9) granite base, and (10) granite bridge. Adapted from \cite{Mayerich}\cite{Choe}}
-\label{fig1}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=0.5\textwidth]{KESM_closeup.jpg}
-\caption{Tissue Sectioning and Imaging in KESM. Adapted from \cite{Mayerich}\cite{Choe}}
-\label{fig2}
-\end{figure}
-
-\subsubsection{KESM Mouse Brain Data}
-Using KESM, we have been able to obtain whole-brainscale
-data from the mouse. \cite{Yoonsuck}
-
-\subsection{Subsection Heading Here}
-Subsection text here.
-
-
-\subsubsection{Subsubsection Heading Here}
-Subsubsection text here.
-
-
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
 % For figures, \caption should occur after the \includegraphics.
@@ -537,22 +394,201 @@ Subsubsection text here.
 
 
 
-\section{Conclusion}
-
-The conclusion goes here.
 
 
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/misc/
+% Read the url.sty source comments for usage information. Basically,
+% \url{my_url_here}.
+
+%\usepackage{graphicx}
+%\usepackage{caption}
+\usepackage{subcaption}
 
 
-% conference papers do not normally have an appendix
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
 
 
-% use section* for acknowledgement
-\section*{Acknowledgment}
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+\usepackage{graphicx}
+
+\begin{document}
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+\title{Segmentation of Nissl stained mouse brain data set and its 3D visualization}
 
 
-The authors would like to thank...
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{Junseok Lee}
+\IEEEauthorblockA{Department of Computer \\ Science and Engineering\\
+Texas A\&M\ University\\
+College Station, Texas 77843\\
+Email: junseogi44@tamu.edu}
+\and
+\IEEEauthorblockN{Wookyung An}
+\IEEEauthorblockA{Department of Computer \\ Science and Engineering\\
+Texas A\&M\ University\\
+College Station, Texas 77843\\
+Email: aqualiquid@tamu.edu}}
 
+% conference papers do not typically use \thanks and this command
+% is locked out in conference mode. If really needed, such as for
+% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+% after \documentclass
+
+% for over three affiliations, or if they all won't fit within the width
+% of the page, use this alternative format:
+% 
+%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
+%Homer Simpson\IEEEauthorrefmark{2},
+%James Kirk\IEEEauthorrefmark{3}, 
+%Montgomery Scott\IEEEauthorrefmark{3} and
+%Eldon Tyrell\IEEEauthorrefmark{4}}
+%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
+%Georgia Institute of Technology,
+%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
+%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
+%Email: homer@thesimpsons.com}
+%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
+%Telephone: (800) 555--1212, Fax: (888) 555--1212}
+%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+% make the title area
+\maketitle
+
+\begin{abstract}
+%\boldmath
+The structure of graph connectivity in mammalian brain is necessary to understand essential requirement of function and its relationship. Brain microvasculature is one of the representation of brain activity as well as graph connectivity. For this reason, analyzing its connectivity with coordinated activity of large numbers of neurons, tracing the vasculature plays important role to analyze how function of neural circuits can be constructed. For example, blood flow in brain contains clinical importance in neurological disease. To vectorize and visualize microvasculature in 3D space, there are three undepining steps: (1) data acquisition, (2) image segmentation, and (3) Vectorization. Knife Edge Scanning Microscope (KESM) is the instrument that developed by Brain Network Laboratory (BNL) in Texas A\&M, which helps physical sectioning in various planes, i.e, sagittal coronal. By using KESM, it is possible to acquire the anatomical structure of entire mouse brain. However, there is technical realities such as detector noise, signal scatter, refractive aberrations, and acquisition speed while sectioning can degrade the quality of image. \cite{Kau} Furthermore, since Nissl stained image which stains cell bodies and endoplasmic reticulum has various type of background intensities, it is hard to segment desired region as we wish. To solve these issues, we analyzed the problem in order to segment blood vessel for rendering centerline of microvasculature and applied image processing techniques: (1) Anisotropic diffusion filtering, (2) Median Filtering, (3) Otsu's multiple threshold, and (4) Rescaling intensity. Then, we reconstructed 3D volumetric data and rendered centerlines based on the 3D volume which generated from image processing process. Finally, we rendered 3D vectorized volume including elimination of duplicated filament. Overall, preprocessing step for 3D visualization of microvasculature with Nissl stained image is promising in terms of comprehending details of neural circuits and its relationship.  
+
+\end{abstract}
+% IEEEtran.cls defaults to using nonbold math in the Abstract.
+% This preserves the distinction between vectors and scalars. However,
+% if the conference you are submitting to favors bold math in the abstract,
+% then you can use LaTeX's standard command \boldmath at the very start
+% of the abstract to achieve this. Many IEEE journals/conferences frown on
+% math in the abstract anyway.
+
+% no keywords
+
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+\section{\textbf{Introduction}}
+
+\subsection{\textbf{Motivation}}
+To comprehend However, the neuronal structure and its relationship is complicated and still remains poorly understood. To be specific, the topology and morphology of the mammalian neuronal network tangles inside of the brain that leads to hardly figure out particular functional brain activity. Brain microvasculature has been shown to play an important role in disorders and neurodegenerative diseases including Alzheimer’s Disease, Multiple Sclerosis, and Parkinson’s Disease.In this sense, 
+
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.24\textwidth}
+                \includegraphics[width=\textwidth]{KESM.jpg}
+                \caption{A KESM : Full view}
+                \label{fig:KESM}
+        \end{subfigure}
+        \hfill 
+        \begin{subfigure}{0.24\textwidth}
+                \includegraphics[width=\textwidth]{KESM_closeup.jpg}
+                \caption{A Imaging Principle}
+                \label{fig:Imaging Principle}
+        \end{subfigure}
+        
+        \caption{\textbf{The Knife-Edge Scanning Microscope (KESM)}. (1) high speed line-scan camera, (2) microscope objective, (3) diamond knife and light collimator,(4) water immersion specimen tank, (5) air-bearing three-axes precision stage, (6)white-light illuminator, (7) water pump (in the back), (8) computer server installed
+with image acquisition and stage controller boards, (9) granite base, and (10) granite bridge. Adapted from \cite{Mayerich}\cite{Choe}}
+\label{fig1}
+\end{figure}
+
+
+\subsection{\textbf{Background}}
+
+\subsubsection{\textbf{KESM}}
+Knife Edge Scanning Microscope was developed in Brain Networks Laboratory (BNL) at Texas A\&M\ University. It will allow the reconstruction of mammalian brain architecture. The instrument has been designed to volume digitize at 200MHz a specimen (e.g., a plastic-embedded tissue block) at 250nm sampling resolution. The instrument delivers an aligned three-dimensional mesh of uniform volume elements (voxels): Voxels are assigned digital signal amplitudes for each optical channel (wavelength) used in scanning the specimen. Physical sectioning is used to circufent photon-limited image capture (a speed requirement). No deconvolution of the imagery is necessary. The speed of the instrument is such that we anticipate an entire mouse brain($\sim1cm^3$) can be scanned in one month (one-shift operation). \cite{McCormick} In Fig.1, (a) shows the structure of the instrument. The imaging principle of KESM is shown in (b). The objective and the knife is held in place, while the specimen affixed on the positioning stage moves, and gets scrapedagainst the diamond knife, generating a thin section flowing over the knife. Line-scan imaging is done near the very tip
+of the knife where the distortion is minimal. Illumination is provided through the diamond knife (green beam indicates the light path). \cite{Yoonsuck}
+
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.24\textwidth}
+                \includegraphics[width=\textwidth]{Nissl.jpg}
+                \caption{Nissl image}
+                \label{fig:Nissl}
+        \end{subfigure}
+        \hfill 
+        \begin{subfigure}{0.24\textwidth}
+                \includegraphics[width=\textwidth]{Nissl_volume.jpg}
+                \caption{Nissl volume}
+                \label{fig:Nissl volume}
+        \end{subfigure}
+        
+        \caption{\textbf{KESM Nissl Data}. Nissl-stained tissue data from KESM are
+shown (rat somatosensory cortex). \cite{Chul}}
+\label{fig2}
+\end{figure}
+
+
+\subsubsection{\textbf{KESM Nissl Data}}
+Mouse brain stained in Nissl, which reveals the distribution of cell body, was acquired in 2010. \cite{Choe2010} In Fig.2,(a) is a single image (300 $\mu$m wide). (b) is a 300 $\mu$m cube. The dark donut-shaped objects are the cell bodies labeled by Nissl. White ovals are unstained regions representing blood vessels. The voxel resolution was 0.6 $\mu$m $\times$ 0.7 $\mu$m $\times$ 1.0 $\mu$m. \cite{Chul}
+
+
+\subsection{\textbf{Goal of the project}}
+
+
+\section{\textbf{Methods}}
+
+
+\subsection{\textbf{Data acquisition}}
+Using KESM, we have been able to obtain whole-brainscale data from the mouse. \cite{Yoonsuck}
+
+
+\subsection{\textbf{Image segmentation}}
+
+
+\begin{center} \textbf{Noise deletion} 
+\end{center}
+
+
+\subsubsection{\textbf{Anisotropic siffusion filtering}}
+
+
+\subsubsection{\textbf{Median filtering}}
+
+
+\begin{center} \textbf{Extract specific region} \end{center}
+
+
+\section{\textbf{Development Environment}}
+
+
+\section{\textbf{Results}}
+
+
+\section{\textbf{Conclusion and Future work}}
 
 
 
@@ -579,11 +615,11 @@ The authors would like to thank...
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
+
 \begin{thebibliography}{1}
 
 \bibitem{Kau}
-Kaufhold, John P., et al.  \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+Kaufhold, John P., et al.  \emph{Vectorization of optically sectioned brain microvasculature: Learning aids completion of vascular graphs by connecting gaps and deleting open-ended segments}\hskip 1em plus 0.5em minus 0.4em\relax Medical image analysis 16.6 (2012): 1241-1258.
   
 \bibitem{Mayerich}  
 D. Mayerich, L. Abbott and B. Mccormick, \emph{Knife-edge scanning microscopy for imaging and reconstruction of three-dimensional anatomical structures of the mouse brain,} \hskip 1em plus
@@ -611,11 +647,22 @@ Yoonsuck Choe, David Mayerich, Jaerock Kwon, Daniel E. Miller, Ji Ryang Chung,Ch
 H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 2014.
 
+
+\bibitem{Berislav}
+Burials Zlokovic, \emph{The blood-brain barrier in health and chronic neurodegenerative disorders} \hskip 1em plus 0.5em minus 0.4em Neuron, vol. 57, pp. 178$\sim$201, 2008.
+
+\bibitem{Chul}
+Sung, Chul, et al. \emph{Scalable, incremental learning with MapReduce parallelization for cell detection in high-resolution 3D microscopy data}, \hskip 1em plus 0.5em minus 0.4em Neural Networks (IJCNN), The 2013 International Joint Conference on. IEEE, 2013.
+
+\bibitem{Choe2010}
+Y. Choe, L. C. Abbott, D. E. Miller, D. Han, H.-F. Yang, J. R. Chung, C. Sung, D.
+Mayerich, J. Kwon, K. Micheva, and S. J. Smith. \emph{Multiscale imaging, analysis,
+and integration of mouse brain networks.}, \hskip 1em plus 0.5em minus 0.4em Neuroscience Meeting Planner. San Diego, CA: Society for Neuroscience, 2010.
+
+
 \end{thebibliography}
 
 
 
 % that's all folks
 \end{document}
-
-
