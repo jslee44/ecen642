@@ -1,4 +1,5 @@
-%% Updated 12_9_2014_17:05 
+%% Updated 12_9_2014_17:51
+
 
 
 %% bare_conf.tex
@@ -530,7 +531,7 @@ with image acquisition and stage controller boards, (9) granite base, and (10) g
 
 \subsubsection{\textbf{KESM}}
 Knife Edge Scanning Microscope was developed in Brain Networks Laboratory (BNL) at Texas A\&M\ University. It will allow the reconstruction of mammalian brain architecture. The instrument has been designed to volume digitize at 200MHz a specimen (e.g., a plastic-embedded tissue block) at 250nm sampling resolution. The instrument delivers an aligned three-dimensional mesh of uniform volume elements (voxels): Voxels are assigned digital signal amplitudes for each optical channel (wavelength) used in scanning the specimen. Physical sectioning is used to circufent photon-limited image capture (a speed requirement). No deconvolution of the imagery is necessary. The speed of the instrument is such that we anticipate an entire mouse brain($\sim1cm^3$) can be scanned in one month (one-shift operation). \cite{McCormick} In Fig.1, (a) shows the structure of the instrument. The imaging principle of KESM is shown in (b). The objective and the knife is held in place, while the specimen affixed on the positioning stage moves, and gets scrapedagainst the diamond knife, generating a thin section flowing over the knife. Line-scan imaging is done near the very tip
-of the knife where the distortion is minimal. Illumination is provided through the diamond knife (green beam indicates the light path). \cite{Yoonsuck}
+of the knife where the distortion is minimal. Illumination is provided through the diamond knife (green beam indicates the light path). \cite{Yoonsuck}\\
 
 \begin{figure}
         \centering
@@ -557,6 +558,14 @@ Mouse brain stained in Nissl, which reveals the distribution of cell body, was a
 
 
 \subsection{\textbf{Goal of the project}}
+Our goal of the project are
+
+\begin{flushleft}
+1. Segment Nissl stained image data set
+\\ 2. Render 3D image volume
+\\ 3. Render centerlines of the segmented 3D image volume
+\\ 4. Genetate 3D visualization with centerlines  
+\end{flushleft}
 
 
 \section{\textbf{Methods}}
@@ -580,6 +589,14 @@ Using KESM, we have been able to obtain whole-brainscale data from the mouse. \c
 
 
 \begin{center} \textbf{Extract specific region} \end{center}
+
+\subsubsection{\textbf{3D volume data reconstruction}}
+
+
+\subsubsection{\textbf{Rendering center-lines}}
+
+
+\subsubsection{\textbf{Rendering Automatic elimination of duplicated capillaries}}
 
 
 \section{\textbf{Development Environment}}
