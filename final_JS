@@ -1,5 +1,4 @@
-%% Updated 12_9_2014_17:51
-
+%% Updated 12_10_2014_15:51
 
 
 %% bare_conf.tex
@@ -507,36 +506,33 @@ The structure of graph connectivity in mammalian brain is necessary to understan
 \subsection{\textbf{Motivation}}
 To comprehend However, the neuronal structure and its relationship is complicated and still remains poorly understood. To be specific, the topology and morphology of the mammalian neuronal network tangles inside of the brain that leads to hardly figure out particular functional brain activity. Brain microvasculature has been shown to play an important role in disorders and neurodegenerative diseases including Alzheimer’s Disease, Multiple Sclerosis, and Parkinson’s Disease.In this sense, 
 
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation Results}
+%\label{fig_sim}
+%\end{figure}
+
 \begin{figure}
         \centering
-        \begin{subfigure}{0.24\textwidth}
-                \includegraphics[width=\textwidth]{KESM.jpg}
-                \caption{A KESM : Full view}
-                \label{fig:KESM}
-        \end{subfigure}
-        \hfill 
-        \begin{subfigure}{0.24\textwidth}
-                \includegraphics[width=\textwidth]{KESM_closeup.jpg}
-                \caption{A Imaging Principle}
-                \label{fig:Imaging Principle}
-        \end{subfigure}
-        
-        \caption{\textbf{The Knife-Edge Scanning Microscope (KESM)}. (1) high speed line-scan camera, (2) microscope objective, (3) diamond knife and light collimator,(4) water immersion specimen tank, (5) air-bearing three-axes precision stage, (6)white-light illuminator, (7) water pump (in the back), (8) computer server installed
-with image acquisition and stage controller boards, (9) granite base, and (10) granite bridge. Adapted from \cite{Mayerich}\cite{Choe}}
-\label{fig1}
+        \includegraphics[width=0.35\textwidth]{KESM.jpg}
+        \caption{\textbf{The Knife-Edge Scanning Microscope (KESM)}. (1) high speed line-scan camera, (2) microscope objective, (3) diamond knife and light collimator,(4) water immersion specimen tank, (5) air-bearing three-axes precision stage, (6)white-light illuminator, (7) water pump (in the back), (8) computer server installed with image acquisition and stage controller boards, (9) granite base, and (10) granite bridge. Adapted from \cite{Mayerich}\cite{Choe}}
+		\label{fig1}
 \end{figure}
 
 
 \subsection{\textbf{Background}}
 
 \subsubsection{\textbf{KESM}}
-Knife Edge Scanning Microscope was developed in Brain Networks Laboratory (BNL) at Texas A\&M\ University. It will allow the reconstruction of mammalian brain architecture. The instrument has been designed to volume digitize at 200MHz a specimen (e.g., a plastic-embedded tissue block) at 250nm sampling resolution. The instrument delivers an aligned three-dimensional mesh of uniform volume elements (voxels): Voxels are assigned digital signal amplitudes for each optical channel (wavelength) used in scanning the specimen. Physical sectioning is used to circufent photon-limited image capture (a speed requirement). No deconvolution of the imagery is necessary. The speed of the instrument is such that we anticipate an entire mouse brain($\sim1cm^3$) can be scanned in one month (one-shift operation). \cite{McCormick} In Fig.1, (a) shows the structure of the instrument. The imaging principle of KESM is shown in (b). The objective and the knife is held in place, while the specimen affixed on the positioning stage moves, and gets scrapedagainst the diamond knife, generating a thin section flowing over the knife. Line-scan imaging is done near the very tip
-of the knife where the distortion is minimal. Illumination is provided through the diamond knife (green beam indicates the light path). \cite{Yoonsuck}\\
+Knife Edge Scanning Microscope was developed in Brain Networks Laboratory (BNL) at Texas A\&M\ University. It will allow the reconstruction of mammalian brain architecture. The instrument has been designed to volume digitize at 200MHz a specimen (e.g., a plastic-embedded tissue block) at 250nm sampling resolution. The instrument delivers an aligned three-dimensional mesh of uniform volume elements (voxels): Voxels are assigned digital signal amplitudes for each optical channel (wavelength) used in scanning the specimen. Physical sectioning is used to circufent photon-limited image capture (a speed requirement). No deconvolution of the imagery is necessary. The speed of the instrument is such that we anticipate an entire mouse brain ($\sim1cm^3$) can be scanned in one month (one-shift operation). \cite{McCormick} Fig.1 shows the structure of the instrument.\\ 
 
 \begin{figure}
         \centering
         \begin{subfigure}{0.24\textwidth}
-                \includegraphics[width=\textwidth]{Nissl.jpg}
+                \includegraphics[width=\textwidth]{raw_image.jpg}
                 \caption{Nissl image}
                 \label{fig:Nissl}
         \end{subfigure}
@@ -554,7 +550,9 @@ shown (rat somatosensory cortex). \cite{Chul}}
 
 
 \subsubsection{\textbf{KESM Nissl Data}}
-Mouse brain stained in Nissl, which reveals the distribution of cell body, was acquired in 2010. \cite{Choe2010} In Fig.2,(a) is a single image (300 $\mu$m wide). (b) is a 300 $\mu$m cube. The dark donut-shaped objects are the cell bodies labeled by Nissl. White ovals are unstained regions representing blood vessels. The voxel resolution was 0.6 $\mu$m $\times$ 0.7 $\mu$m $\times$ 1.0 $\mu$m. \cite{Chul}
+Mouse brain stained in Nissl, which reveals the distribution of cell body, was acquired in 2010. \cite{Choe2010} The Nissl data set in
+particular enables detailed studies of whole-brain cortical and
+subcortical distribution of neuronal cell bodies.\cite{Chul} In Fig.2,(a) is a single image (500 $\times$ 500 pixels). (b) is a 300 $\mu$m cube. The dark donut-shaped objects are the cell bodies labeled by Nissl. White ovals are unstained regions representing blood vessels. The voxel resolution was 0.6 $\mu$m $\times$ 0.7 $\mu$m $\times$ 1.0 $\mu$m. \cite{Chul}
 
 
 \subsection{\textbf{Goal of the project}}
@@ -572,7 +570,46 @@ Our goal of the project are
 
 
 \subsection{\textbf{Data acquisition}}
-Using KESM, we have been able to obtain whole-brainscale data from the mouse. \cite{Yoonsuck}
+Using KESM, we have been able to obtain whole-brainscale data from the mouse. \cite{Yoonsuck} The imaging principle of KESM is shown (b) in Fig. 2. The objective and the knife is held in place, while the specimen affixed on the positioning stage moves, and gets scrapedagainst the diamond knife, generating a thin section flowing over the knife. Line-scan imaging is done near the very tip
+of the knife where the distortion is minimal. Illumination is provided through the diamond knife (green beam indicates the light path). \cite{Yoonsuck} We use (a) in Fig. 1 for our project's raw data. We cropped Nissle stained image data set. (500 $\times$ 500 pixels $\times$ 100 images)
+
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.24\textwidth}
+                \includegraphics[width=\textwidth]{KESM_closeup.jpg}
+                \caption{KESM : Close-up}
+                \label{fig:Close-up}
+        \end{subfigure}
+        \hfill 
+        \begin{subfigure}{0.24\textwidth}
+                \includegraphics[width=\textwidth]{KESM_image_principle.jpg}
+                \caption{Image principle}
+                \label{fig:Image principle}
+        \end{subfigure}
+        
+        \caption{\textbf{Data acquisition by KESM}. Adopted from \cite{Wenjie}}
+\label{fig3}
+\end{figure}
+
+
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.24\textwidth}
+                \includegraphics[width=\textwidth]{Before_single_Ostu.jpg}
+                \caption{Nissl image : Close-up}
+                \label{fig:Close-up}
+        \end{subfigure}
+        \hfill 
+        \begin{subfigure}{0.24\textwidth}
+                \includegraphics[width=\textwidth]{After_single_Ostu.jpg}
+                \caption{Threshhold}
+                \label{fig:Image principle}
+        \end{subfigure}
+        
+        \caption{\textbf{Ostu's single level threshold.}}
+\label{fig4}
+\end{figure}
+
 
 
 \subsection{\textbf{Image segmentation}}
@@ -580,6 +617,44 @@ Using KESM, we have been able to obtain whole-brainscale data from the mouse. \c
 
 \begin{center} \textbf{Noise deletion} 
 \end{center}
+
+
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.24\textwidth}
+                \includegraphics[width=\textwidth]{raw_image.jpg}
+                \caption{Nissl image}
+                \label{fig:raw_image}
+        \end{subfigure}
+        \hfill 
+        \begin{subfigure}{0.24\textwidth}
+                \includegraphics[width=\textwidth]{after_threshold.jpg}
+                \caption{Threshhold}
+                \label{fig:after_threshold}
+        \end{subfigure}
+        
+        \caption{\textbf{Ostu's multiple threshold with level 5.}}
+\label{fig5}
+\end{figure}
+
+
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.24\textwidth}
+                \includegraphics[width=\textwidth]{two_level_image.jpg}
+                \caption{2 highest intensity levels}
+                \label{fig:two_level_image}
+        \end{subfigure}
+        \hfill 
+        \begin{subfigure}{0.24\textwidth}
+                \includegraphics[width=\textwidth]{after_threshold.jpg}
+                \caption{The highest intensity level}
+                \label{fig:after_threshold}
+        \end{subfigure}
+        
+        \caption{\textbf{Segmentation Result Image.}}
+\label{fig5}
+\end{figure}
 
 
 \subsubsection{\textbf{Anisotropic siffusion filtering}}
@@ -676,6 +751,8 @@ Y. Choe, L. C. Abbott, D. E. Miller, D. Han, H.-F. Yang, J. R. Chung, C. Sung, D
 Mayerich, J. Kwon, K. Micheva, and S. J. Smith. \emph{Multiscale imaging, analysis,
 and integration of mouse brain networks.}, \hskip 1em plus 0.5em minus 0.4em Neuroscience Meeting Planner. San Diego, CA: Society for Neuroscience, 2010.
 
+\bibitem{Wenjie}
+Wenjie Yang, \emph{Automated neurovascular tracing and analysis of the Knife=Edge Scanning Microscope India Ink Data Set.}, \hskip 1em plus 0.5em minus 0.4em Texas A\&M\ University, 2014
 
 \end{thebibliography}
 
