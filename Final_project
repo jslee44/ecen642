@@ -1,4 +1,5 @@
-%% Updated 12_12_2014_16:57
+%% Updated 12_12_2014_17:56
+
 
 %% bare_conf.tex
 %% V1.3
@@ -518,7 +519,8 @@ The structure of graph connectivity in mammalian brain is necessary to understan
 \section{\textbf{Introduction}}
 
 \subsection{\textbf{Motivation}}
-To comprehend However, the neuronal structure and its relationship is complicated and still remains poorly understood. To be specific, the topology and morphology of the mammalian neuronal network tangles inside of the brain that leads to hardly figure out particular functional brain activity. Brain microvasculature has been shown to play an important role in disorders and neurodegenerative diseases including Alzheimer’s Disease, Multiple Sclerosis, and Parkinson’s Disease.In this sense, 
+The human neuronal structure has been concealed for thousands of years, therefore, researching on human brain is fascinating for those who stride to fully comprehend its structure and functions from biology and neuroscience. Moreover, Brain microvasculature has been shown to play an important role in disorders and neurodegenerative diseases including Alzheimer’s Disease, Multiple Sclerosis, and Parkinson’s Disease. However, the neuronal structure and its relationship is complicated and still remains poorly understood. To be specific, the topology and morphology of the mammalian neuronal network tangle inside of the brain that leads to hardly figure out particular functional brain activity. In this sense, tracing the microvasculature is inevitable procedure to understand human brain.
+
 
 %\begin{figure}[!t]
 %\centering
@@ -541,7 +543,7 @@ To comprehend However, the neuronal structure and its relationship is complicate
 \subsection{\textbf{Background}}
 
 \subsubsection{\textbf{KESM}}
-Knife-Edge Scanning Microscope was developed in Brain Networks Laboratory (BNL) at Texas A\&M\ University. It will allow the reconstruction of mammalian brain architecture. The instrument has been designed to volume digitize at 200MHz a specimen (e.g., a plastic-embedded tissue block) at 250nm sampling resolution. The instrument delivers an aligned three-dimensional mesh of uniform volume elements (voxels): Voxels are assigned digital signal amplitudes for each optical channel (wavelength) used in scanning the specimen. Physical sectioning is used to circufent photon-limited image capture (a speed requirement). No deconvolution of the imagery is necessary. The speed of the instrument is such that we anticipate an entire mouse brain ($\sim1cm^3$) can be scanned in one month (one-shift operation). \cite{McCormick} Fig.1 shows the structure of the instrument.\\ 
+Knife-Edge Scanning Microscope (KESM) was developed in Brain Network Laboratory (BNL) which is a state-of-art microscopy that provides high resolution physical sectioning image. KESM is cable of 2D and/or 3D image reconstruction of mammalian neuronal architecture. The instrument has been designed to volume digitized at 200MHz a specimen at 250nm sampling resolution, and delivers an aligned 3D mesh of uniform voxels: Voxels are assigned digital signal amplitudes for each optical channel (wavelength) used in scanning the specimen. \cite{McCormick} Fig.1 shows the structure of KESM. \\ 
 
 \begin{figure}
         \centering
@@ -769,29 +771,29 @@ After applying algorithm, the result has been enhanced compared with not elimina
 \makeatother
 
 \begin{algorithm}
-\caption{My algorithm}\label{euclid}
+\caption{Elimination for Duplicated Capillaries}\label{euclid}
 \begin{algorithmic}[1]
-\Procedure{MyProcedure}{}
-\State $\textit{stringlen} \gets \text{length of }\textit{string}$
-\State $i \gets \textit{patlen}$
-\BState \emph{top}:
-\If {$i > \textit{stringlen}$} \Return false
-\EndIf
-\State $j \gets \textit{patlen}$
-\BState \emph{loop}:
-\If {$\textit{string}(i) = \textit{path}(j)$}
-\State $j \gets j-1$.
-\State $i \gets i-1$.
-\State \textbf{goto} \emph{loop}.
+\Procedure{Elimination}{}
+\State $\textit{Boundaty} \gets \text{int}$
+\State $i \gets \textit{int}$
+\State $j \gets \textit{int}$
+\State $s \gets \textit{size of brnach}$
+\State $branch \gets \textit{List of vector}$
+\State $new \gets \textit{Copy of list of vector}$
+\BState \emph{loop i}
+\State \emph{loop j}
+\If {$\textit{branch}[i][0]=\textit{branch}[j][0]< Boundary$}
+\If {$\textit{branch}[i][s]=\textit{branch}[j][s]<Boundary$}
+\State $\textit{eliminate i th branch}$
+\State \textbf{goto} \emph{loop} j
+\State \textbf{goto} \emph{loop} i
+\State $\textit{new} \gets \text{branch}$
 \State \textbf{close};
 \EndIf
-\State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
-\State \textbf{goto} \emph{top}.
+\EndIf
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
-
-
 
 
 \begin{figure}
