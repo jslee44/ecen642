@@ -1,4 +1,5 @@
-%% Updated 12_11_2014_19:24
+%% Updated 12_11_2014_21:47
+
 
 
 
@@ -66,6 +67,9 @@
 % should be used if it is desired that the figures are to be displayed in
 % draft mode.
 %
+
+
+
 \documentclass[conference]{IEEEtran}
 % Add the compsoc option for Computer Society conferences.
 %
@@ -74,6 +78,7 @@
 % \documentclass[conference]{../sty/IEEEtran}
 
 \usepackage{textgreek}
+
 
 % Some very useful LaTeX packages include:
 % (uncomment the ones you want to load)
@@ -185,7 +190,17 @@
 
 % *** SPECIALIZED LIST PACKAGES ***
 %
-%\usepackage{algorithmic}
+\usepackage{algorithmicx}
+\usepackage[ruled]{algorithm}
+\usepackage{algpascal}
+\usepackage{algc}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage[noend]{algpseudocode}
+\usepackage{tikz} %circle solution
+
+
+
 % algorithmic.sty was written by Peter Williams and Rogerio Brito.
 % This package provides an algorithmic environment fo describing algorithms.
 % You can use the algorithmic environment in-text or within a figure
@@ -502,6 +517,7 @@ The structure of graph connectivity in mammalian brain is necessary to understan
 \IEEEpeerreviewmaketitle
 
 
+
 \section{\textbf{Introduction}}
 
 \subsection{\textbf{Motivation}}
@@ -650,6 +666,17 @@ of the knife where the distortion is minimal. Illumination is provided through t
 \subsubsection{\textbf{Anisotropic siffusion filtering}}
 
 
+$$
+\frac{\partial I}{\partial t} = \mathrm{div} \left( c(x,y,t) \nabla I \right)= \nabla c \cdot \nabla I + c(x,y,t) \Delta I
+$$
+
+where,
+
+$$
+c\left(\|\nabla I\|\right) = e^{-\left(\|\nabla I\| / K\right)^2}
+$$
+
+
 \subsubsection{\textbf{Median filtering}}
 
 
@@ -701,16 +728,50 @@ of the knife where the distortion is minimal. Illumination is provided through t
 \end{figure}
 
 
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+\node[shape=circle,draw,inner sep=0.5pt] (char) {#1};}}
 
 \subsubsection{\textbf{Rendering Automatic elimination of duplicated capillaries}}
 
+Before tracing the vascular by Flatbox, seed points on the six surfaces of the volume were generated. However, while tracing the vascular volume, the same part of vessel might be traced multiple times if multiple seed points on different surfaces lead to the same vessel. As a result, duplicated tracing results with different  tracing directions can exist for a single vessel and the processing time increase as a result. Tracing from all the seed points on every surfaces of the volume would reduce missed vessels, but the redundant seed points can cause the duplicated tracing issue at the same time.\cite{Wenjie} We made a algorithm for solving the problem of duplicated tracing result. Fig.9 shows the results of the tracing vascular from two seed points. They found a same vascular approaching from the other direction’s seed points. This shows that number 1 and number 2 are duplicated, which is the same capillary. 
+First, we retrieve the seed point data and its list of branches. Second, check the seed point of \circled{1} in Fig 1 and the other’s end point of its capillary \circled{2} in Fig 10. If each x-y-z coordinate are in close boundary by calculating Manhattan distance, check the endpoint of \circled{1} and the other seed point of \circled{2}, applying the same distance measurement for each x-y-z coordinate. We can assume that if those which are in the same boundary are meet the segmentation criteria as well as vice versa, there are duplicated. For further understanding,  we set the value of the boundary as 4, which is heuristic founding by manual elimination. Third, eliminate one of duplicated capillaries and keep tracking next seed point whether they are in the boundary or not. Algorithm 1 is our pseudo code.\\
+After applying algorithm, the result has been enhanced compared with not eliminated capillaries. Fig 10. (a) shows the not applying the automatic elimination algorithm and Fig 10. (b) indicates the result after applying the algorithm. We can see the difference between them. Also, the complexity, in this case the vtk size and its coordinates, has been enormously reduced. 
 
 \begin{figure}
         \centering
-        \includegraphics[width=0.3\textwidth]{algorithm.jpg}
-        \caption{\textbf{Algorithm of Elimination of duplicated capillaries}}
+        \includegraphics[width=0.35\textwidth]{algorithm.jpg}
+        \caption{\textbf{Algorithm of elimination of duplicated capillaries}}
 		\label{fig9}
 \end{figure}
+
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\begin{algorithm}
+\caption{My algorithm}\label{euclid}
+\begin{algorithmic}[1]
+\Procedure{MyProcedure}{}
+\State $\textit{stringlen} \gets \text{length of }\textit{string}$
+\State $i \gets \textit{patlen}$
+\BState \emph{top}:
+\If {$i > \textit{stringlen}$} \Return false
+\EndIf
+\State $j \gets \textit{patlen}$
+\BState \emph{loop}:
+\If {$\textit{string}(i) = \textit{path}(j)$}
+\State $j \gets j-1$.
+\State $i \gets i-1$.
+\State \textbf{goto} \emph{loop}.
+\State \textbf{close};
+\EndIf
+\State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
+\State \textbf{goto} \emph{top}.
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
 
 
 
@@ -743,7 +804,6 @@ of the knife where the distortion is minimal. Illumination is provided through t
 
 
 
-
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page
 % adjust value as needed - may need to be readjusted if
@@ -766,6 +826,8 @@ of the knife where the distortion is minimal. Illumination is provided through t
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
+
+
 
 \begin{thebibliography}{1}
 
