@@ -1,6 +1,4 @@
-%% Updated 12_11_2014_21:47
-
-
+%% Updated 12_11_2014_22:20
 
 
 %% bare_conf.tex
@@ -535,7 +533,7 @@ To comprehend However, the neuronal structure and its relationship is complicate
 
 \begin{figure}
         \centering
-        \includegraphics[width=0.35\textwidth]{KESM.jpg}
+        \includegraphics[width=0.34\textwidth]{KESM.jpg}
         \caption{\textbf{The Knife-Edge Scanning Microscope (KESM)}. (1) high speed line-scan camera, (2) microscope objective, (3) diamond knife and light collimator,(4) water immersion specimen tank, (5) air-bearing three-axes precision stage, (6)white-light illuminator, (7) water pump (in the back), (8) computer server installed with image acquisition and stage controller boards, (9) granite base, and (10) granite bridge. Adapted from \cite{Mayerich}\cite{Choe}}
 		\label{fig1}
 \end{figure}
@@ -548,13 +546,13 @@ Knife-Edge Scanning Microscope was developed in Brain Networks Laboratory (BNL) 
 
 \begin{figure}
         \centering
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}{0.23\textwidth}
                 \includegraphics[width=\textwidth]{raw_image.jpg}
                 \caption{Nissl image}
                 \label{fig:Nissl}
         \end{subfigure}
         \hfill 
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}{0.23\textwidth}
                 \includegraphics[width=\textwidth]{Nissl_volume.jpg}
                 \caption{Nissl volume}
                 \label{fig:Nissl volume}
@@ -604,13 +602,13 @@ of the knife where the distortion is minimal. Illumination is provided through t
 
 \begin{figure}
         \centering
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}{0.23\textwidth}
                 \includegraphics[width=\textwidth]{Before_single_Ostu.jpg}
                 \caption{Nissl image : Close-up}
                 \label{fig:Close-up}
         \end{subfigure}
         \hfill 
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}{0.23\textwidth}
                 \includegraphics[width=\textwidth]{After_single_Ostu.jpg}
                 \caption{Threshhold}
                 \label{fig:Image principle}
@@ -627,13 +625,13 @@ of the knife where the distortion is minimal. Illumination is provided through t
 
 \begin{figure}
         \centering
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}{0.23\textwidth}
                 \includegraphics[width=\textwidth]{raw_image.jpg}
                 \caption{Nissl image}
                 \label{fig:raw_image}
         \end{subfigure}
         \hfill 
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}{0.23\textwidth}
                 \includegraphics[width=\textwidth]{after_threshold.jpg}
                 \caption{Threshhold}
                 \label{fig:after_threshold}
@@ -646,13 +644,13 @@ of the knife where the distortion is minimal. Illumination is provided through t
 
 \begin{figure}
         \centering
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}{0.23\textwidth}
                 \includegraphics[width=\textwidth]{two_level_image.jpg}
                 \caption{2 highest intensity levels}
                 \label{fig:two_level_image}
         \end{subfigure}
         \hfill 
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}{0.23\textwidth}
                 \includegraphics[width=\textwidth]{after_threshold.jpg}
                 \caption{The highest intensity level}
                 \label{fig:after_threshold}
@@ -679,6 +677,28 @@ $$
 
 \subsubsection{\textbf{Median filtering}}
 
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.23\textwidth}
+                \includegraphics[width=\textwidth]{median_filter_principle.jpg}
+                \caption{}
+                \label{median_filter_principle}
+        \end{subfigure}
+        \hfill 
+        \begin{subfigure}{0.23\textwidth}
+                \includegraphics[width=\textwidth]{median_filter_principle_1.jpg}
+                \caption{}
+                \label{median_filter_principle_1}
+        \end{subfigure}
+        
+        \caption{\textbf{Median filtering principle.} (a) Image with a noise in the center with pixel
+value (150), surrounded by correct neighboring values. (b) The median filtering
+result. The noise pixel value 150 is replaced with 124, so that the distinctive
+pixel value is smoothed to be similar to neighboring pixel values. Adapted
+from \cite{Justusson} \cite{Dongkun}} 
+\label{fig7}
+\end{figure}
+
 
 \subsection{\textbf{Image segmentation (Extract specific region)}}
 
@@ -702,7 +722,7 @@ $$
         \end{subfigure}
         
         \caption{\textbf{3D volume data reconstruction}}
-\label{fig7}
+\label{fig8}
 \end{figure}
 
 
@@ -724,7 +744,7 @@ $$
         \end{subfigure}
         
         \caption{\textbf{3D volume data reconstruction with Center-line}}
-\label{fig8}
+\label{fig9}
 \end{figure}
 
 
@@ -733,15 +753,15 @@ $$
 
 \subsubsection{\textbf{Rendering Automatic elimination of duplicated capillaries}}
 
-Before tracing the vascular by Flatbox, seed points on the six surfaces of the volume were generated. However, while tracing the vascular volume, the same part of vessel might be traced multiple times if multiple seed points on different surfaces lead to the same vessel. As a result, duplicated tracing results with different  tracing directions can exist for a single vessel and the processing time increase as a result. Tracing from all the seed points on every surfaces of the volume would reduce missed vessels, but the redundant seed points can cause the duplicated tracing issue at the same time.\cite{Wenjie} We made a algorithm for solving the problem of duplicated tracing result. Fig.9 shows the results of the tracing vascular from two seed points. They found a same vascular approaching from the other direction’s seed points. This shows that number 1 and number 2 are duplicated, which is the same capillary. 
+Before tracing the vascular by Flatbox, seed points on the six surfaces of the volume were generated. However, while tracing the vascular volume, the same part of vessel might be traced multiple times if multiple seed points on different surfaces lead to the same vessel. As a result, duplicated tracing results with different  tracing directions can exist for a single vessel and the processing time increase as a result. Tracing from all the seed points on every surfaces of the volume would reduce missed vessels, but the redundant seed points can cause the duplicated tracing issue at the same time. \cite{Wenjie} We made a algorithm for solving the problem of duplicated tracing result. Fig.10 shows the results of the tracing vascular from two seed points. They found a same vascular approaching from the other direction’s seed points. This shows that number 1 and number 2 are duplicated, which is the same capillary. 
 First, we retrieve the seed point data and its list of branches. Second, check the seed point of \circled{1} in Fig 1 and the other’s end point of its capillary \circled{2} in Fig 10. If each x-y-z coordinate are in close boundary by calculating Manhattan distance, check the endpoint of \circled{1} and the other seed point of \circled{2}, applying the same distance measurement for each x-y-z coordinate. We can assume that if those which are in the same boundary are meet the segmentation criteria as well as vice versa, there are duplicated. For further understanding,  we set the value of the boundary as 4, which is heuristic founding by manual elimination. Third, eliminate one of duplicated capillaries and keep tracking next seed point whether they are in the boundary or not. Algorithm 1 is our pseudo code.\\
-After applying algorithm, the result has been enhanced compared with not eliminated capillaries. Fig 10. (a) shows the not applying the automatic elimination algorithm and Fig 10. (b) indicates the result after applying the algorithm. We can see the difference between them. Also, the complexity, in this case the vtk size and its coordinates, has been enormously reduced. 
+After applying algorithm, the result has been enhanced compared with not eliminated capillaries. Fig 11. (a) shows the not applying the automatic elimination algorithm and Fig 11. (b) indicates the result after applying the algorithm. We can see the difference between them. Also, the complexity, in this case the vtk size and its coordinates, has been enormously reduced. 
 
 \begin{figure}
         \centering
-        \includegraphics[width=0.35\textwidth]{algorithm.jpg}
+        \includegraphics[width=0.34\textwidth]{algorithm.jpg}
         \caption{\textbf{Algorithm of elimination of duplicated capillaries}}
-		\label{fig9}
+		\label{fig10}
 \end{figure}
 
 
@@ -777,20 +797,20 @@ After applying algorithm, the result has been enhanced compared with not elimina
 
 \begin{figure}
         \centering
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}{0.23\textwidth}
                 \includegraphics[width=\textwidth]{original.jpg}
                 \caption{Original}
                 \label{fig:original}
         \end{subfigure}
         \hfill 
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}{0.23\textwidth}
                 \includegraphics[width=\textwidth]{elimination.jpg}
                 \caption{Elimination}
                 \label{fig:elimination}
         \end{subfigure}
         
         \caption{\textbf{Automatic elimination og duplicated capillaries}}
-\label{fig10}
+\label{fig11}
 \end{figure}
 
 
@@ -801,7 +821,6 @@ After applying algorithm, the result has been enhanced compared with not elimina
 
 
 \section{\textbf{Conclusion and Future work}}
-
 
 
 % trigger a \newpage just before the given reference
@@ -874,6 +893,13 @@ and integration of mouse brain networks.}, \hskip 1em plus 0.5em minus 0.4em Neu
 
 \bibitem{Wenjie}
 Wenjie Yang, \emph{Automated neurovascular tracing and analysis of the Knife=Edge Scanning Microscope India Ink Data Set.}, \hskip 1em plus 0.5em minus 0.4em Texas A\&M\ University, 2014
+
+\bibitem{Justusson}
+B. I. Justusson, \emph{Two-dimensional digital signal prcessing II.}, \hskip 1em plus 0.5em minus 0.4em Topics in Applied Physics, vol. 43, pp. 161–196, 1981.
+
+\bibitem{Dongkun}
+Dongkun Kim, \emph{Autonomic Seedpoint and Tracing of Microstructures in the Knife-Edge Scanning Microscope Mouse Brain Data Set}, \hskip 1em plus 0.5em minus 0.4em Texas A\&M\ University, 2011
+
 
 \end{thebibliography}
 
