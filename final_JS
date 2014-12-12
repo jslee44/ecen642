@@ -1,4 +1,5 @@
-%% Updated 12_10_2014_15:51
+%% Updated 12_11_2014_19:24
+
 
 
 %% bare_conf.tex
@@ -527,7 +528,7 @@ To comprehend However, the neuronal structure and its relationship is complicate
 \subsection{\textbf{Background}}
 
 \subsubsection{\textbf{KESM}}
-Knife Edge Scanning Microscope was developed in Brain Networks Laboratory (BNL) at Texas A\&M\ University. It will allow the reconstruction of mammalian brain architecture. The instrument has been designed to volume digitize at 200MHz a specimen (e.g., a plastic-embedded tissue block) at 250nm sampling resolution. The instrument delivers an aligned three-dimensional mesh of uniform volume elements (voxels): Voxels are assigned digital signal amplitudes for each optical channel (wavelength) used in scanning the specimen. Physical sectioning is used to circufent photon-limited image capture (a speed requirement). No deconvolution of the imagery is necessary. The speed of the instrument is such that we anticipate an entire mouse brain ($\sim1cm^3$) can be scanned in one month (one-shift operation). \cite{McCormick} Fig.1 shows the structure of the instrument.\\ 
+Knife-Edge Scanning Microscope was developed in Brain Networks Laboratory (BNL) at Texas A\&M\ University. It will allow the reconstruction of mammalian brain architecture. The instrument has been designed to volume digitize at 200MHz a specimen (e.g., a plastic-embedded tissue block) at 250nm sampling resolution. The instrument delivers an aligned three-dimensional mesh of uniform volume elements (voxels): Voxels are assigned digital signal amplitudes for each optical channel (wavelength) used in scanning the specimen. Physical sectioning is used to circufent photon-limited image capture (a speed requirement). No deconvolution of the imagery is necessary. The speed of the instrument is such that we anticipate an entire mouse brain ($\sim1cm^3$) can be scanned in one month (one-shift operation). \cite{McCormick} Fig.1 shows the structure of the instrument.\\ 
 
 \begin{figure}
         \centering
@@ -556,22 +557,15 @@ subcortical distribution of neuronal cell bodies.\cite{Chul} In Fig.2,(a) is a s
 
 
 \subsection{\textbf{Goal of the project}}
-Our goal of the project are
-
-\begin{flushleft}
-1. Segment Nissl stained image data set
-\\ 2. Render 3D image volume
-\\ 3. Render centerlines of the segmented 3D image volume
-\\ 4. Genetate 3D visualization with centerlines  
-\end{flushleft}
+Our goal of the project is to (1) segment Nissl stained image data set. (2) Render 3D image volume by segmented Nissl stained image data set. (3) Render center-line of 3D image volume. (4) Generate 3D visualization with center-line.
 
 
 \section{\textbf{Methods}}
 
 
 \subsection{\textbf{Data acquisition}}
-Using KESM, we have been able to obtain whole-brainscale data from the mouse. \cite{Yoonsuck} The imaging principle of KESM is shown (b) in Fig. 2. The objective and the knife is held in place, while the specimen affixed on the positioning stage moves, and gets scrapedagainst the diamond knife, generating a thin section flowing over the knife. Line-scan imaging is done near the very tip
-of the knife where the distortion is minimal. Illumination is provided through the diamond knife (green beam indicates the light path). \cite{Yoonsuck} We use (a) in Fig. 1 for our project's raw data. We cropped Nissle stained image data set. (500 $\times$ 500 pixels $\times$ 100 images)
+Using KESM, we have been able to obtain whole-brainscale data from the mouse. \cite{Yoonsuck} The imaging principle of KESM is shown (b) in Fig. 3. The objective and the knife is held in place, while the specimen affixed on the positioning stage moves, and gets scrapedagainst the diamond knife, generating a thin section flowing over the knife. Line-scan imaging is done near the very tip
+of the knife where the distortion is minimal. Illumination is provided through the diamond knife (green beam indicates the light path). \cite{Yoonsuck} We use (a) in Fig. 2 for our project's raw data. We cropped the particular region of the Nissl stained image data set. (500 $\times$ 500 pixels $\times$ 100 images)
 
 \begin{figure}
         \centering
@@ -612,11 +606,7 @@ of the knife where the distortion is minimal. Illumination is provided through t
 
 
 
-\subsection{\textbf{Image segmentation}}
-
-
-\begin{center} \textbf{Noise deletion} 
-\end{center}
+\subsection{\textbf{Image segmentation (Noise deletion)}}
 
 
 \begin{figure}
@@ -653,7 +643,7 @@ of the knife where the distortion is minimal. Illumination is provided through t
         \end{subfigure}
         
         \caption{\textbf{Segmentation Result Image.}}
-\label{fig5}
+\label{fig6}
 \end{figure}
 
 
@@ -663,15 +653,84 @@ of the knife where the distortion is minimal. Illumination is provided through t
 \subsubsection{\textbf{Median filtering}}
 
 
-\begin{center} \textbf{Extract specific region} \end{center}
+\subsection{\textbf{Image segmentation (Extract specific region)}}
+
+
 
 \subsubsection{\textbf{3D volume data reconstruction}}
+
+
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.26\textwidth}
+                \includegraphics[width=\textwidth]{3D_volume_data_reconstruction.jpg}
+                \caption{Set view : X-Z Axis}
+                \label{fig:X-Y Axis}
+        \end{subfigure}
+        \hfill 
+        \begin{subfigure}{0.21\textwidth}
+                \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_1.jpg}
+                \caption{Set view : X-Y Axis}
+                \label{fig:X-Y Axis}
+        \end{subfigure}
+        
+        \caption{\textbf{3D volume data reconstruction}}
+\label{fig7}
+\end{figure}
 
 
 \subsubsection{\textbf{Rendering center-lines}}
 
 
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.26\textwidth}
+                \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_centerline.jpg}
+                \caption{Set view : X-Z Axis}
+                \label{fig:X-Y Axis}
+        \end{subfigure}
+        \hfill 
+        \begin{subfigure}{0.21\textwidth}
+                \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_centerline_1.jpg}
+                \caption{Set view : X-Y Axis}
+                \label{fig:X-Y Axis}
+        \end{subfigure}
+        
+        \caption{\textbf{3D volume data reconstruction with Center-line}}
+\label{fig8}
+\end{figure}
+
+
+
 \subsubsection{\textbf{Rendering Automatic elimination of duplicated capillaries}}
+
+
+\begin{figure}
+        \centering
+        \includegraphics[width=0.3\textwidth]{algorithm.jpg}
+        \caption{\textbf{Algorithm of Elimination of duplicated capillaries}}
+		\label{fig9}
+\end{figure}
+
+
+
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.24\textwidth}
+                \includegraphics[width=\textwidth]{original.jpg}
+                \caption{Original}
+                \label{fig:original}
+        \end{subfigure}
+        \hfill 
+        \begin{subfigure}{0.24\textwidth}
+                \includegraphics[width=\textwidth]{elimination.jpg}
+                \caption{Elimination}
+                \label{fig:elimination}
+        \end{subfigure}
+        
+        \caption{\textbf{Automatic elimination og duplicated capillaries}}
+\label{fig10}
+\end{figure}
 
 
 \section{\textbf{Development Environment}}
