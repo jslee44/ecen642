@@ -1,4 +1,4 @@
-%% Updated 12_12_2014_05:08
+%% Updated 12_12_2014_12:03 PM
 
 
 %% bare_conf.tex
@@ -713,7 +713,7 @@ pixel value is smoothed to be similar to neighboring pixel values. Adapted from 
 
 \subsection{\textbf{Image segmentation (Extract specific region)}}
 
-Since the Nissl stained image is likely to have a various type of intensities because it stains cell body and endoplasmic reticulum. In this sense, excessive intensities in background hinder to segment desired region. For this reason, we adopted Otus’ multiple threshold method in SimpleITK \cite{Lowekamp}. Owing to the fact CurvurtureAnistropicDiffusion class in SimpleITK filtered out image with numerical pixel type, it needs to transform the linear scale levels of intensity. In this case, it should be rescaled gray scale intensity, maximum to 255 and minimum to 0, because we extracted highest level intensity among designated level of intensities.\\
+Since the Nissl stained image is likely to have a various type of intensities because Nissl method stains details of brain stem and cerebellum. In this sense, excessive intensities in background hinder to segment desired region. For this reason, we adopted Otus’ multiple threshold method in SimpleITK \cite{Lowekamp}. Owing to the fact CurvurtureAnistropicDiffusion class in SimpleITK filtered out image with numerical pixel type, it needs to transform the linear scale levels of intensity. In this case, it should be rescaled gray scale intensity, maximum to 255 and minimum to 0, because we extracted highest level intensity among designated level of intensities.\\
 
 \subsubsection{\textbf{Multiple threshold}}
 
