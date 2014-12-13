@@ -1,4 +1,4 @@
-%% Updated 12_13_2014_04:27
+%% Updated 12_12_2014_05:08
 
 
 %% bare_conf.tex
@@ -610,6 +610,9 @@ of the knife where the distortion is minimal. Illumination is provided through t
 
 
 \subsection{\textbf{Image segmentation (Noise deletion)}}
+
+We attempted to segment blood vessel in cropped image by 500x500 pixel. The most challenging part in our research is analyzing characteristic of Nissl data image because each stained feature has peculiarized attribute and idiosyncrasy of the sectioned region such as data loss while sectioning image. Furthermore, segmenting whole-brain image is problematic since the ground truth of grayscale mouse brain image by Nissl stained method has not been fully learned by human operator which cannot be undone. Even though the image data set has numerous neuronal information, we are still struggling to define unprobed region in brain structure. Lastly, the data set has more than 12,000 sectioned images, therefore, finding reasonable images in the data set was a time-consuming task. In this research, we aimed to find appropriate images in the data set and applied image processing algorithm by many times of trial-and-error attempts through empirical observations.\\
+
 Although Otsu\rq s optimal threshold method is capable of automatically perform clustering-based image thresholding \cite{Sezgin} or reduction of the gray level image to a binary image, single optimal threshold not eligible to segment desired region (e.g., blood vessels). To be specific, Fig. 4 (b) is close-up image which applied single level Otsu\rq s  threshold method that generated from Fig. 4 (a). Because raw Nissl stained image tends to have a noise acquired from data acquisition step (e.g., knife chatter and image blurred phenomenon due to speed of acquisition by KESM). Therefore, we exploited Anisotropic Diffusion filtering and Median image filtering method in order to make a breakthrough the deficiencies for segmenting desired region. 
 \begin{figure}
         \centering
@@ -741,8 +744,7 @@ $$\\
 
 \subsection{\textbf{3D volume data reconstruction}}
 
-
-\begin{figure}[H]
+\begin{figure}
         \centering
         \begin{subfigure}{0.4\textwidth}
                 \includegraphics[width=\textwidth]{3D_volume_data_reconstruction.jpg}
@@ -760,9 +762,7 @@ $$\\
 \label{fig9}
 \end{figure}
 
-
 \subsection{\textbf{Rendering center-lines}}
-
 
 \begin{figure}
         \centering
@@ -781,7 +781,6 @@ $$\\
         \caption{\textbf{3D volume data reconstruction with Center-line}}
 \label{fig10}
 \end{figure}
-
 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
 \node[shape=circle,draw,inner sep=0.5pt] (char) {#1};}}
