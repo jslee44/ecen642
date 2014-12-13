@@ -1,4 +1,5 @@
-%% Updated 12_12_2014_23:04
+%% Updated 12_12_2014_23:19
+
 
 %% bare_conf.tex
 %% V1.3
@@ -674,6 +675,9 @@ c\left(\|\nabla I\|\right) = e^{-\left(\|\nabla I\| / K\right)^2}
 $$
 
 
+%$$
+%outputPixel = (inputPixel - inputMin)
+
 \subsubsection{\textbf{Median filtering}}
 
 \begin{figure}
@@ -790,18 +794,17 @@ After applying algorithm, the result has been enhanced compared with not elimina
 \caption{Elimination for Duplicated Capillaries}\label{euclid}
 \begin{algorithmic}[1]
 \Procedure{Elimination}{}
-\State $\textit{Boundaty} \gets \text{int}$
+\State $\textit{Boundary} \gets \text{int}$
 \State $i \gets \textit{int}$
 \State $j \gets \textit{int}$
 \State $s \gets \textit{size of brnach}$
 \State $branch \gets \textit{List of vector}$
 \State $new \gets \textit{Copy of list of vector}$
 \State \emph{loop i:}
-
-\If {$\textit{branch}[i][0]=\textit{branch}[j][0]< Boundary$}
+\If {$\textit{branch}[i][0]-\textit{branch}[j][0]< Boundary$}
 \State \emph{loop j:}
-\If {$\textit{branch}[i][s]=\textit{branch}[j][s]<Boundary$}
-\State $\textit{eliminate i th branch}$
+\If {$\textit{branch}[i][s]-\textit{branch}[j][s]<Boundary$}
+\State $\textit{eliminate i-th branch}$
 \EndIf
 \State \textbf{goto} \emph{loop} j
 \EndIf
