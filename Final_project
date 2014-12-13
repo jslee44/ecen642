@@ -1,4 +1,4 @@
-%% Updated 12_12_2014_20:26
+%% Updated 12_12_2014_21:30
 
 
 %% bare_conf.tex
@@ -492,16 +492,14 @@ Email: aqualiquid@tamu.edu}}
 The structure of graph connectivity in mammalian brain is necessary to understand essential requirement of neuronal function and its relationship. Brain microvasculature is one of the representations of brain activity as well as graph connectivity. For this reason, analyzing neuronal connectivity with(??) coordinated activity of large numbers of neurons, tracing the vasculature plays important role to analyze how function of neural circuits can be constructed. For example, blood flow in brain contains clinical importance in neurological disease. Vectorize and visualize microvasculature in 3D space can de described as three steps: (1) data acquisition, (2) image segmentation, and (3) Vectorization. Knife Edge Scanning Microscope (KESM) is the instrument that developed by Brain Network Laboratory (BNL) in Texas A\&M, which helps physical sectioning in various planes, i.e, sagittal coronal. By using KESM, it is possible to acquire the anatomical structure of entire mouse brain. However, there is technical realities such as detector noise, signal scatter, refractive aberrations, and acquisition speed while sectioning can degrade the quality of image. \cite{Kau} Furthermore, since Nissl stained image which stains cell bodies and endoplasmic reticulum has various type of background intensities, segmenting blood vessel remains challenging problem; there is no single algorithmic way to segment the desired region appropriately. To solve this issue, we analyzed the problem in order to segment blood vessel: (1) Anisotropic diffusion filtering, (2) Median Filtering, (3) Otsu\rq s multiple threshold, and (4) Rescaling intensity. Then, we reconstructed 3D volumetric data and rendered centerlines based on the 3D volume which generated from image processing process. Finally, we rendered 3D vectorized volume including elimination of duplicated filament. Overall, the result of preprocessing step for 3D visualization of microvasculature with Nissl stained image is promising in terms of comprehending details of neural circuits and its relationship.  
 
 \end{abstract}
+
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
 % if the conference you are submitting to favors bold math in the abstract,
 % then you can use LaTeX's standard command \boldmath at the very start
 % of the abstract to achieve this. Many IEEE journals/conferences frown on
 % math in the abstract anyway.
-
 % no keywords
-
-
 
 
 % For peer review papers, you can put extra information on the cover
@@ -710,13 +708,13 @@ from \cite{Justusson} \cite{Dongkun}}
 
 \begin{figure}
         \centering
-        \begin{subfigure}{0.44\textwidth}
+        \begin{subfigure}{0.4\textwidth}
                 \includegraphics[width=\textwidth]{3D_volume_data_reconstruction.jpg}
                 \caption{Set view : X-Z Axis}
                 \label{fig:X-Y Axis}
         \end{subfigure}
         \hfill 
-        \begin{subfigure}{0.44\textwidth}
+        \begin{subfigure}{0.4\textwidth}
                 \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_1.jpg}
                 \caption{Set view : X-Y Axis}
                 \label{fig:X-Y Axis}
@@ -732,13 +730,13 @@ from \cite{Justusson} \cite{Dongkun}}
 
 \begin{figure}
         \centering
-        \begin{subfigure}{0.44\textwidth}
+        \begin{subfigure}{0.4\textwidth}
                 \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_centerline.jpg}
                 \caption{Set view : X-Z Axis}
                 \label{fig:X-Y Axis}
         \end{subfigure}
         \hfill 
-        \begin{subfigure}{0.44\textwidth}
+        \begin{subfigure}{0.4\textwidth}
                 \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_centerline_1.jpg}
                 \caption{Set view : X-Y Axis}
                 \label{fig:X-Y Axis}
@@ -754,9 +752,10 @@ from \cite{Justusson} \cite{Dongkun}}
 
 \subsubsection{\textbf{Rendering Automatic elimination of duplicated capillaries}}
 
-Before tracing the vascular by Flatbox, seed points on the six surfaces of the volume were generated. However, while tracing the vascular volume, the same part of vessel might be traced multiple times if multiple seed points on different surfaces lead to the same vessel. As a result, duplicated tracing results with different  tracing directions can exist for a single vessel and the processing time increase as a result. Tracing from all the seed points on every surfaces of the volume would reduce missed vessels, but the redundant seed points can cause the duplicated tracing issue at the same time. \cite{Wenjie} We made a algorithm for solving the problem of duplicated tracing result. Fig.10 shows the results of the tracing vascular from two seed points. They found a same vascular approaching from the other direction\rq s seed points. This shows that number 1 and number 2 are duplicated, which is the same capillary. 
-First, we retrieve the seed point data and its list of branches. Second, check the seed point of \circled{1} in Fig 1 and the other\rq s end point of its capillary \circled{2} in Fig 10. If each x-y-z coordinate are in close boundary by calculating Manhattan distance, check the endpoint of \circled{1} and the other seed point of \circled{2}, applying the same distance measurement for each x-y-z coordinate. We can assume that if those which are in the same boundary are meet the segmentation criteria as well as vice versa, there are duplicated. For further understanding,  we set the value of the boundary as 4, which is heuristic founding by manual elimination. Third, eliminate one of duplicated capillaries and keep tracking next seed point whether they are in the boundary or not. Algorithm 1 is our pseudo code.\\
-After applying algorithm, the result has been enhanced compared with not eliminated capillaries. Fig 11. (a) shows the not applying the automatic elimination algorithm and Fig 11. (b) indicates the result after applying the algorithm. We can see the difference between them. Also, the complexity, in this case the vtk size and its coordinates, has been enormously reduced. 
+Seed points on the six surfaces of the 3D volume data reconstruction were generated. However, while tracing the vascular 3D volume, the same part of vessel might be traced multiple times if multiple seed points on different surfaces lead to the same vessel. As a result, duplicated tracing results with different  tracing directions can exist for a single vessel and the processing time increased. Tracing from all the seed points on every surfaces of the volume would reduce missed vessels, but the redundant seed points can cause the duplicated tracing issue at the same time. \cite{Wenjie} We made a algorithm for solving the problem of duplicated tracing result.  Algorithm 1 is the pseudocode of  elimination of duplicated capillaries. Fig.10 shows the results of the tracing vascular from two seed points. They found a same vascular approaching from the other direction’s seed points. This shows that number 1 and number 2 are duplicated, which is the same capillary.
+First, we retrieve the seed point data and its list of branches. Second, check the seed point of \circled{1} in Fig 1 and the other’s end point of its capillary \circled{2} in Fig 10. If each x-y-z coordinate are in close boundary by calculating Manhattan distance, check the endpoint of \circled{1} and the other seed point of \circled{2}, applying the same distance measurement for each x-y-z coordinate. We can assume that if those which are in the same boundary are meet the segmentation criteria as well as vice versa, there are duplicated. For further understanding,  we set the value of the boundary as 4, which is heuristic founding by manual elimination. Third, eliminate one of duplicated capillaries and keep tracking next seed point whether they are in the boundary or not. Algorithm 1 is our pseudo code.\\
+After applying algorithm, the result has been enhanced compared with not eliminated capillaries. Fig 11. (a) shows the not applying the automatic elimination algorithm and Fig 11. (b) indicates the result after applying the algorithm. We can see the difference between them. Also, the complexity, in this case the vtk size and its coordinates, has been enormously reduced.
+
 
 \begin{figure}
         \centering
