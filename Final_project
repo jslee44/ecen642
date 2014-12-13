@@ -1,4 +1,4 @@
-%% Updated 12_13_2014_16:22
+%% Updated 12_13_2014_16:25
 
 
 %% bare_conf.tex
@@ -712,7 +712,7 @@ pixel value is smoothed to be similar to neighboring pixel values. Adapted from 
 \label{fig8}
 \end{figure}
 
-Median filtering is a nonlinear filtering that often uses for noise reduction in digital signal processing as well as digital image processing. Median filtering is effective not only excellent in noise reduction, but also preserving edges. However, it requires large cost of computing depends on size of filtering mask. Fig. 8 shows an example of Median filtering. Each neighboring pixel values replaces each entry with the median of neighboring entries.
+Median filtering is a nonlinear filtering that often uses for noise reduction in digital signal processing as well as digital image processing. Median filtering is effective not only excellent in noise reduction, but also preserving edges. However, it requires large cost of computing depends on size of filtering mask. Fig. 8 shows an example of Median filtering. Each neighboring pixel values replaces each entry with the median of neighboring entries. All immediate pixel values in the window are reordered in ascending sequence and calculate the median value in single array. Then, the calculated median value, in this case 124 in Fig 8.(b), replaces with center value (pixel) of the window, therefore, each entry pixel value has been smoothing by surrounding pixel values. 
 
 $$
 \emph{Rx,g = N $\lfloor$ n / 2 $\rfloor$}\\
@@ -723,6 +723,9 @@ where,
 $$
 \emph{Rx,g : median pixel value.}
 $$
+
+In this project, the raw Nissl stained image data has noise and artifact in sectioned imaged while data acquisition by KESM. Fig 7.(b) displays that has uneven area and knife chatter which leads to significant information loss. Compared with Fig 7.(a), most part of the damaged area in (b) has no stem and cerebrum information. Due to knife vibration while image sampling, the quality of sectioned image has been degraded, moreover, it is impossible to revoke each sectioned result after cutting the mouse brain because the sectioned surface of each tissue by the microscopy will not be reconstructed. In addition, on the top right of Fig 7.(b) shows high frequency chatter due to knife vibration. In this sense, Median filtering is inevitable procedure to compensate information lossy region. 
+
 
 \subsection{\textbf{Image segmentation (Extract specific region)}}
 
