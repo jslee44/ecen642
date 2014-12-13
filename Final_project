@@ -1,4 +1,4 @@
-%% Updated 12_12_2014_24:53
+%% Updated 12_13_2014_04:27
 
 
 %% bare_conf.tex
@@ -587,8 +587,9 @@ This project aims to visualize mouse brain microvasculature in 3D image. We can 
 
 \subsection{\textbf{Data acquisition}}
 
-Using KESM, we have been able to obtain whole-brainscale data from the mouse \cite{Yoonsuck}. The imaging principle of KESM is shown (b) in Fig. 3. The objective and the knife is held in place, while the specimen affixed on the positioning stage moves, and gets scrapedagainst the diamond knife, generating a thin section flowing over the knife. Line-scan imaging is done near the very tip
-of the knife where the distortion is minimal. Illumination is provided through the diamond knife (green beam indicates the light path) \cite{Yoonsuck}. We use (a) in Fig. 2 for our project's raw data. We cropped the particular region of the Nissl stained image data set. (500 $\times$ 500 pixels $\times$ 100 images)
+Using KESM, we have been able to obtain whole-brainscale data from the mouse. \cite{Yoonsuck} The imaging principle of KESM is shown (b) in Fig. 3. The objective and the knife is held in place, while the specimen affixed on the positioning stage moves, and gets scrapedagainst the diamond knife, generating a thin section flowing over the knife. Line-scan imaging is done near the very tip
+of the knife where the distortion is minimal. Illumination is provided through the diamond knife (green beam indicates the light path). \cite{Yoonsuck} We use (a) in Fig. 2 for our project's raw data. We cropped the particular region of the Nissl stained image data set by using ImageMagick \cite{Still}. (500 $\times$ 500 pixels $\times$ 100 images)
+
 \begin{figure}[H]
         \centering
         \begin{subfigure}{0.23\textwidth}
@@ -662,13 +663,31 @@ $$
 c\left(\|\nabla I\|\right) = e^{-\left(\|\nabla I\| / K\right)^2}
 $$
 
-where \emph{K} controls the sensitivity to edges.\\
+where the constant \emph{K} controls the sensitivity to edges.\\
 
 Anisotropic diffusion is an iterative process until a sufficient smoothing is obtained. This process computes each successive image data set in predecessive clustered set of image. Briefly speaking, Anisotropic diffusion can produce a cluster of parameterized images, however, resulting image by each iterative process can be combined between the predecessor\rq s clustered image and successive image which fully depend on localized content of the predecessive clustered image. The reason why we adopted Anisotropic diffusion is each image has various type of background noises, but each feature can be localized in particular region since the feature (i.e., cell body and blood vessel) has morphological shape of characteristic. SimpleITK provides Anisotropic diffusion filter class. The input and output image must be a scalar with numerical type. (e.g, float and double)\\ 
 
 \subsubsection{\textbf{Median filtering}}
 
 \begin{figure}
+        \centering
+        \begin{subfigure}{0.23\textwidth}
+                \includegraphics[width=\textwidth]{not_chattered.jpg}
+                \caption{Normal image}
+                \label{not_chattered}
+        \end{subfigure}
+        \hfill 
+        \begin{subfigure}{0.23\textwidth}
+                \includegraphics[width=\textwidth]{chattered.jpg}
+                \caption{Chattered image}
+                \label{chattered}
+        \end{subfigure}
+        
+        \caption{\textbf{Problem of chatter.}} 
+\label{fig7}
+\end{figure}
+
+\begin{figure}[b]
         \centering
         \begin{subfigure}{0.23\textwidth}
                 \includegraphics[width=\textwidth]{median_filter_principle.jpg}
@@ -683,10 +702,9 @@ Anisotropic diffusion is an iterative process until a sufficient smoothing is ob
         \end{subfigure}
         
         \caption{\textbf{Median filtering principle.} (a) Image with a noise in the center with pixel
-value (150), surrounded by correct neighboring values. (b) The median filtering
-result. The noise pixel value 150 is replaced with 124, so that the distinctive
+value (150), surrounded by correct neighboring values. (b) The median filtering result. The noise pixel value 150 is replaced with 124, so that the distinctive
 pixel value is smoothed to be similar to neighboring pixel values. Adapted from \cite{Justusson} \cite{Dongkun}}. 
-\label{fig7}
+\label{fig8}
 \end{figure}
 
 
@@ -739,7 +757,7 @@ $$\\
         \end{subfigure}
         
         \caption{\textbf{3D volume data reconstruction}}
-\label{fig8}
+\label{fig9}
 \end{figure}
 
 
@@ -761,7 +779,7 @@ $$\\
         \end{subfigure}
         
         \caption{\textbf{3D volume data reconstruction with Center-line}}
-\label{fig9}
+\label{fig10}
 \end{figure}
 
 
@@ -779,7 +797,7 @@ After applying algorithm, the result has been enhanced compared with not elimina
         \centering
         \includegraphics[width=0.34\textwidth]{algorithm.jpg}
         \caption{\textbf{Algorithm of elimination of duplicated capillaries}}
-		\label{fig10}
+		\label{fig11}
 \end{figure}
 
 \makeatletter
@@ -829,7 +847,7 @@ After applying algorithm, the result has been enhanced compared with not elimina
         \end{subfigure}
         
         \caption{\textbf{Automatic elimination og duplicated capillaries}}
-\label{fig11}
+\label{fig12}
 \end{figure}
 
 
@@ -949,6 +967,10 @@ Lowekamp, Bradley C., et al. \emph{The Design of SimpleITK.} \hskip 1em plus 0.5
 %[18]
 \bibitem{Pietro}
 Pietro Perona and Jitendra Malik, \emph{Scale-space and edge detection using anisotropic diffusion.} \hskip 1em plus 0.5em minus 0.4em IEEE Transactions on Pattern Analysis and Machine Intelligence, 12 (7): 629$\sim$639, 1990.
+
+%[19]
+\bibitem{Still}
+Still, Michael, \emph{The definitive guide to ImageMagick. Vol. 1.} \hskip 1em plus 0.5em minus 0.4em Berkeley: Apress, 2006.
 
 
 
