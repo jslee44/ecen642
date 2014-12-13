@@ -1,4 +1,4 @@
-%% Updated 12_12_2014_23:19
+%% Updated 12_12_2014_23:40
 
 
 %% bare_conf.tex
@@ -675,8 +675,6 @@ c\left(\|\nabla I\|\right) = e^{-\left(\|\nabla I\| / K\right)^2}
 $$
 
 
-%$$
-%outputPixel = (inputPixel - inputMin)
 
 \subsubsection{\textbf{Median filtering}}
 
@@ -708,6 +706,12 @@ pixel value is smoothed to be similar to neighboring pixel values. Adapted from 
 
 \subsubsection{\textbf{Rescale intensity}}
 
+$$
+outputPixel=(inputPixel-inputMin)\times
+$$
+$$
+ \frac{outputMax-outputMin}{inputMax-inputMin}-outputMin
+$$
 
 
 \section{\textbf{Development Environment}}
@@ -820,13 +824,13 @@ After applying algorithm, the result has been enhanced compared with not elimina
 
 \begin{figure}
         \centering
-        \begin{subfigure}{0.23\textwidth}
+        \begin{subfigure}{0.4\textwidth}
                 \includegraphics[width=\textwidth]{original.jpg}
                 \caption{Original}
                 \label{fig:original}
         \end{subfigure}
         \hfill 
-        \begin{subfigure}{0.23\textwidth}
+        \begin{subfigure}{0.4\textwidth}
                 \includegraphics[width=\textwidth]{elimination.jpg}
                 \caption{Elimination}
                 \label{fig:elimination}
