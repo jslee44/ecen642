@@ -1,4 +1,4 @@
-%% Updated 12_11_2014_22:20
+%% Updated 12_13_2014_23:00
 
 
 %% bare_conf.tex
@@ -196,6 +196,7 @@
 \usepackage{amsmath}
 \usepackage[noend]{algpseudocode}
 \usepackage{tikz} %circle solution
+%\usepackage{mathtools}
 
 
 
@@ -489,19 +490,17 @@ Email: aqualiquid@tamu.edu}}
 
 \begin{abstract}
 %\boldmath
-The structure of graph connectivity in mammalian brain is necessary to understand essential requirement of neuronal function and its relationship. Brain microvasculature is one of the representations of brain activity as well as graph connectivity. For this reason, analyzing neuronal connectivity with(??) coordinated activity of large numbers of neurons, tracing the vasculature plays important role to analyze how function of neural circuits can be constructed. For example, blood flow in brain contains clinical importance in neurological disease. Vectorize and visualize microvasculature in 3D space can de described as three steps: (1) data acquisition, (2) image segmentation, and (3) Vectorization. Knife Edge Scanning Microscope (KESM) is the instrument that developed by Brain Network Laboratory (BNL) in Texas A\&M, which helps physical sectioning in various planes, i.e, sagittal coronal. By using KESM, it is possible to acquire the anatomical structure of entire mouse brain. However, there is technical realities such as detector noise, signal scatter, refractive aberrations, and acquisition speed while sectioning can degrade the quality of image. \cite{Kau} Furthermore, since Nissl stained image which stains cell bodies and endoplasmic reticulum has various type of background intensities, segmenting blood vessel remains challenging problem; there is no single algorithmic way to segment the desired region appropriately. To solve this issue, we analyzed the problem in order to segment blood vessel: (1) Anisotropic diffusion filtering, (2) Median Filtering, (3) Otsu's multiple threshold, and (4) Rescaling intensity. Then, we reconstructed 3D volumetric data and rendered centerlines based on the 3D volume which generated from image processing process. Finally, we rendered 3D vectorized volume including elimination of duplicated filament. Overall, the result of preprocessing step for 3D visualization of microvasculature with Nissl stained image is promising in terms of comprehending details of neural circuits and its relationship.  
+The structure of graph connectivity in mammalian brain is necessary to understand essential requirement of neuronal function and its relationship. Brain microvasculature is one of the representations of brain activity as well as graph connectivity. For this reason, analyzing neuronal connectivity with(??) coordinated activity of large numbers of neurons, tracing the vasculature plays important role to analyze how function of neural circuits can be constructed. For example, blood flow in brain contains clinical importance in neurological disease. Vectorize and visualize microvasculature in 3D space can de described as three steps: (1) data acquisition, (2) image segmentation, and (3) Vectorization. Knife Edge Scanning Microscope (KESM) is the instrument that developed by Brain Network Laboratory (BNL) in Texas A\&M, which helps physical sectioning in various planes, i.e, sagittal coronal. By using KESM, it is possible to acquire the anatomical structure of entire mouse brain. However, there is technical realities such as detector noise, signal scatter, refractive aberrations, and acquisition speed while sectioning can degrade the quality of image \cite{Kau}. Furthermore, since Nissl stained image which stains cell bodies and endoplasmic reticulum has various type of background intensities, segmenting blood vessel remains challenging problem; there is no single algorithmic way to segment the desired region appropriately. To solve this issue, we analyzed the problem in order to segment blood vessel: (1) Anisotropic diffusion filtering, (2) Median Filtering, (3) Otsu\rq s multiple threshold, and (4) Rescaling intensity. Then, we reconstructed 3D volumetric data and rendered centerlines based on the 3D volume which generated from image processing process. Finally, we rendered 3D vectorized volume including elimination of duplicated filament. Overall, the result of preprocessing step for 3D visualization of microvasculature with Nissl stained image is promising in terms of comprehending details of neural circuits and its relationship.  
 
 \end{abstract}
+
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
 % if the conference you are submitting to favors bold math in the abstract,
 % then you can use LaTeX's standard command \boldmath at the very start
 % of the abstract to achieve this. Many IEEE journals/conferences frown on
 % math in the abstract anyway.
-
 % no keywords
-
-
 
 
 % For peer review papers, you can put extra information on the cover
@@ -519,7 +518,9 @@ The structure of graph connectivity in mammalian brain is necessary to understan
 \section{\textbf{Introduction}}
 
 \subsection{\textbf{Motivation}}
-To comprehend However, the neuronal structure and its relationship is complicated and still remains poorly understood. To be specific, the topology and morphology of the mammalian neuronal network tangles inside of the brain that leads to hardly figure out particular functional brain activity. Brain microvasculature has been shown to play an important role in disorders and neurodegenerative diseases including Alzheimer’s Disease, Multiple Sclerosis, and Parkinson’s Disease.In this sense, 
+
+The human neuronal structure has been concealed for thousands of years, therefore, researching on human brain is fascinating for those who stride to fully comprehend its structure and functions from biology and neuroscience. Moreover, Brain microvasculature has been shown to play an important role in disorders and neurodegenerative diseases including Alzheimer\rq s Disease, Multiple Sclerosis, and Parkinson\rq s Disease. However, the neuronal structure and its relationship is complicated and still remains poorly understood. To be specific, the topology and morphology of the mammalian neuronal network tangle inside of the brain that leads to hardly figure out particular functional brain activity. In this sense, tracing the microvasculature is inevitable procedure to understand human brain.
+
 
 %\begin{figure}[!t]
 %\centering
@@ -534,15 +535,13 @@ To comprehend However, the neuronal structure and its relationship is complicate
 \begin{figure}
         \centering
         \includegraphics[width=0.34\textwidth]{KESM.jpg}
-        \caption{\textbf{The Knife-Edge Scanning Microscope (KESM)}. (1) high speed line-scan camera, (2) microscope objective, (3) diamond knife and light collimator,(4) water immersion specimen tank, (5) air-bearing three-axes precision stage, (6)white-light illuminator, (7) water pump (in the back), (8) computer server installed with image acquisition and stage controller boards, (9) granite base, and (10) granite bridge. Adapted from \cite{Mayerich}\cite{Choe}}
+        \caption{\textbf{The Knife-Edge Scanning Microscope (KESM)}. (1) high speed line-scan camera, (2) microscope objective, (3) diamond knife and light collimator,(4) water immersion specimen tank, (5) air-bearing three-axes precision stage, (6)white-light illuminator, (7) water pump (in the back), (8) computer server installed with image acquisition and stage controller boards, (9) granite base, and (10) granite bridge. Adapted from \cite{Mayerich}\cite{Choe}.}
 		\label{fig1}
 \end{figure}
-
-
 \subsection{\textbf{Background}}
 
 \subsubsection{\textbf{KESM}}
-Knife-Edge Scanning Microscope was developed in Brain Networks Laboratory (BNL) at Texas A\&M\ University. It will allow the reconstruction of mammalian brain architecture. The instrument has been designed to volume digitize at 200MHz a specimen (e.g., a plastic-embedded tissue block) at 250nm sampling resolution. The instrument delivers an aligned three-dimensional mesh of uniform volume elements (voxels): Voxels are assigned digital signal amplitudes for each optical channel (wavelength) used in scanning the specimen. Physical sectioning is used to circufent photon-limited image capture (a speed requirement). No deconvolution of the imagery is necessary. The speed of the instrument is such that we anticipate an entire mouse brain ($\sim1cm^3$) can be scanned in one month (one-shift operation). \cite{McCormick} Fig.1 shows the structure of the instrument.\\ 
+Knife-Edge Scanning Microscope (KESM) was developed in Brain Network Laboratory (BNL) which is a state-of-art microscopy that provides high resolution physical sectioning image. KESM is cable of 2D and/or 3D image reconstruction of mammalian neuronal architecture. The instrument has been designed to volume digitized at 200MHz a specimen at 250nm sampling resolution, and delivers an aligned 3D mesh of uniform voxels: Voxels are assigned digital signal amplitudes for each optical channel (wavelength) used in scanning the specimen \cite{McCormick}. Fig.1 shows the structure of KESM. \\ 
 
 \begin{figure}
         \centering
@@ -559,29 +558,15 @@ Knife-Edge Scanning Microscope was developed in Brain Networks Laboratory (BNL) 
         \end{subfigure}
         
         \caption{\textbf{KESM Nissl Data}. Nissl-stained tissue data from KESM are
-shown (rat somatosensory cortex). \cite{Chul}}
+shown (rat somatosensory cortex) \cite{Chul}.}
 \label{fig2}
 \end{figure}
-
-
-\subsubsection{\textbf{KESM Nissl Data}}
-Mouse brain stained in Nissl, which reveals the distribution of cell body, was acquired in 2010. \cite{Choe2010} The Nissl data set in
-particular enables detailed studies of whole-brain cortical and
-subcortical distribution of neuronal cell bodies.\cite{Chul} In Fig.2,(a) is a single image (500 $\times$ 500 pixels). (b) is a 300 $\mu$m cube. The dark donut-shaped objects are the cell bodies labeled by Nissl. White ovals are unstained regions representing blood vessels. The voxel resolution was 0.6 $\mu$m $\times$ 0.7 $\mu$m $\times$ 1.0 $\mu$m. \cite{Chul}
-
+\subsubsection{\textbf{Nissl stain method}}
+Nissl stain method \cite{Glaser} can stain cell body and endoplasmic reticulum, whereas, India ink stain method is able to stain only blood vessel. In other words, Nissl stain method enables to detailed studies of neuronal microvasculature as well as peripheral cellular tissues which lead to analyze whole-brain cortical and subcortical distribution of neuronal cell bodies. In Fig.2, (a) is a cropped Nissl stained image which has 500 x 500 pixels. A white region refers to unstained region representing a blood vessel. (b) is stack of the 2D images that is able to shown as a cube shape. 
 
 \subsection{\textbf{Goal of the project}}
-Our goal of the project is to (1) segment Nissl stained image data set. (2) Render 3D image volume by segmented Nissl stained image data set. (3) Render center-line of 3D image volume. (4) Generate 3D visualization with center-line.
-
-
-\section{\textbf{Methods}}
-
-
-\subsection{\textbf{Data acquisition}}
-Using KESM, we have been able to obtain whole-brainscale data from the mouse. \cite{Yoonsuck} The imaging principle of KESM is shown (b) in Fig. 3. The objective and the knife is held in place, while the specimen affixed on the positioning stage moves, and gets scrapedagainst the diamond knife, generating a thin section flowing over the knife. Line-scan imaging is done near the very tip
-of the knife where the distortion is minimal. Illumination is provided through the diamond knife (green beam indicates the light path). \cite{Yoonsuck} We use (a) in Fig. 2 for our project's raw data. We cropped the particular region of the Nissl stained image data set. (500 $\times$ 500 pixels $\times$ 100 images)
-
-\begin{figure}
+This project aims to visualize mouse brain microvasculature in 3D image. We can describe our work as followings: (1) Segmentation Nissl stained image data set, (2)  rendering 3D image volume by segmented images, (3) rendering center-line in 3D image volume, and (4) generating 3D vectorized image volume. For preprocessing image, since single threshold algorithm (i.e., Otsu\rq s optimal threshold method) is inappropriate to segment blood vessel in Nissl stained image, we adopted Anisotropic diffusion filtering \cite{Weickert},  Median filtering \cite{Justusson},  and Otsu\rq s optimal threshold method \cite{Otsu} with multiple layers. Anisotropic diffusion filtering and median filtering is non-linear method, hence, applying these methods in sequential order will not affect final result in order for reducing background noise that gives arise to various types of intensities. On the other hand, Otsu\rq s multiple threshold method and rescaling intensity should be used after reducing background noise for extracting desired region. (e.g., blood vessel)
+\begin{figure}[b]
         \centering
         \begin{subfigure}{0.24\textwidth}
                 \includegraphics[width=\textwidth]{KESM_closeup.jpg}
@@ -595,12 +580,36 @@ of the knife where the distortion is minimal. Illumination is provided through t
                 \label{fig:Image principle}
         \end{subfigure}
         
-        \caption{\textbf{Data acquisition by KESM}. Adopted from \cite{Wenjie}}
+        \caption{\textbf{Data acquisition by KESM}. Adopted from \cite{Wenjie}.}
 \label{fig3}
 \end{figure}
 
+\section{\textbf{Methods}}
+
+\subsection{\textbf{Data acquisition}}
+
+Using KESM, we have been able to obtain whole-brainscale data from the mouse. \cite{Yoonsuck} The imaging principle of KESM is shown (b) in Fig. 3. The objective and the knife is held in place, while the specimen affixed on the positioning stage moves, and gets scrapedagainst the diamond knife, generating a thin section flowing over the knife. Line-scan imaging is done near the very tip
+of the knife where the distortion is minimal. Illumination is provided through the diamond knife (green beam indicates the light path). \cite{Yoonsuck} We use (a) in Fig. 2 for our project's raw data. We cropped the particular region of the Nissl stained image data set by using ImageMagick \cite{Still}. (500 $\times$ 500 pixels $\times$ 100 images)
 
 \begin{figure}
+        \centering
+        \begin{subfigure}{0.23\textwidth}
+                \includegraphics[width=\textwidth]{not_chattered.jpg}
+                \caption{Normal image}
+                \label{not_chattered}
+        \end{subfigure}
+        \hfill 
+        \begin{subfigure}{0.23\textwidth}
+                \includegraphics[width=\textwidth]{chattered.jpg}
+                \caption{Chattered image}
+                \label{chattered}
+        \end{subfigure}
+        
+        \caption{\textbf{Problem of chatter.}} 
+\label{fig4}
+\end{figure}
+
+\begin{figure}[H]
         \centering
         \begin{subfigure}{0.23\textwidth}
                 \includegraphics[width=\textwidth]{Before_single_Ostu.jpg}
@@ -614,15 +623,16 @@ of the knife where the distortion is minimal. Illumination is provided through t
                 \label{fig:Image principle}
         \end{subfigure}
         
-        \caption{\textbf{Ostu's single level threshold.}}
-\label{fig4}
+        \caption{\textbf{Ostu\rq s single level threshold.}}
+\label{fig5}
 \end{figure}
-
 
 
 \subsection{\textbf{Image segmentation (Noise deletion)}}
 
+We attempted to segment blood vessel in cropped image by 500x500 pixel. The most challenging part in our research is analyzing characteristic of Nissl data image because each stained feature has peculiarized attribute and idiosyncrasy of the sectioned region such as data loss while sectioning image. Furthermore, segmenting whole-brain image is problematic since the ground truth of grayscale mouse brain image by Nissl stained method has not been fully learned by human operator which cannot be undone. Even though the image data set has numerous neuronal information, we are still struggling to define unprobed region in brain structure. Lastly, the data set has more than 12,000 sectioned images, therefore, finding reasonable images in the data set was a time-consuming task. In this research, we aimed to find appropriate images in the data set and applied image processing algorithm by many times of trial-and-error attempts through empirical observations.\\
 
+Although Otsu\rq s optimal threshold method is capable of automatically perform clustering-based image thresholding \cite{Sezgin} or reduction of the gray level image to a binary image, single optimal threshold not eligible to segment desired region (e.g., blood vessels). To be specific, Fig. 4 (b) is close-up image which applied single level Otsu\rq s  threshold method that generated from Fig. 4 (a). Because raw Nissl stained image tends to have a noise acquired from data acquisition step (e.g., knife chatter and image blurred phenomenon due to speed of acquisition by KESM). Also, there is blurred area in Nissl stained image, Fig 4.(a), distinctive division is necessary to segment desired region. Therefore, we exploited Anisotropic Diffusion filtering and Median image filtering method in order to make a breakthrough the deficiencies for segmenting desired region. 
 \begin{figure}
         \centering
         \begin{subfigure}{0.23\textwidth}
@@ -637,12 +647,11 @@ of the knife where the distortion is minimal. Illumination is provided through t
                 \label{fig:after_threshold}
         \end{subfigure}
         
-        \caption{\textbf{Ostu's multiple threshold with level 5.}}
-\label{fig5}
+        \caption{\textbf{Ostu\rq s multiple threshold with level 5.}}
+\label{fig6}
 \end{figure}
 
-
-\begin{figure}
+\begin{figure}[b]
         \centering
         \begin{subfigure}{0.23\textwidth}
                 \includegraphics[width=\textwidth]{two_level_image.jpg}
@@ -651,31 +660,49 @@ of the knife where the distortion is minimal. Illumination is provided through t
         \end{subfigure}
         \hfill 
         \begin{subfigure}{0.23\textwidth}
-                \includegraphics[width=\textwidth]{after_threshold.jpg}
+                \includegraphics[width=\textwidth]{segmentation_result_image.jpg}
                 \caption{The highest intensity level}
                 \label{fig:after_threshold}
         \end{subfigure}
         
         \caption{\textbf{Segmentation Result Image.}}
-\label{fig6}
+\label{fig7}
 \end{figure}
 
 
-\subsubsection{\textbf{Anisotropic siffusion filtering}}
+\subsubsection{\textbf{Anisotropic diffusion  filtering}}
 
+Anisotropic diffusion filtering is a technique aiming at reducing image noise without removing significant parts of the image content, typically edges, lines or other details that are important for the interpretation of the image \cite{Pietro}. Following equations are definition of Anisotropic diffusion filtering.
 
 $$
-\frac{\partial I}{\partial t} = \mathrm{div} \left( c(x,y,t) \nabla I \right)= \nabla c \cdot \nabla I + c(x,y,t) \Delta I
+\frac{\partial I}{\partial t} = \mathrm{div} \left( c(x,y,t) \nabla I \right)= \nabla c \cdot \nabla I + c(x,y,t) \Delta I 
 $$
 
-where,
+where $\Delta$ denotes the Laplacian, $\nabla$ denotes the gradient, \emph{div} is the divergence operator and \emph{c} is the diffusion coefficient. \emph{c} controls the rate of diffusion and is usually chosen as a function of the image gradient so as to preserve edges in the image.\\
+
+coefficient \emph{c} is described: 
 
 $$
 c\left(\|\nabla I\|\right) = e^{-\left(\|\nabla I\| / K\right)^2}
 $$
 
+where the constant \emph{K} controls the sensitivity to edges.\\
+
+Anisotropic diffusion is an iterative process until a sufficient smoothing is obtained. This process computes each successive image data set in predecessive clustered set of image. Briefly speaking, Anisotropic diffusion can produce a cluster of parameterized images, however, resulting image by each iterative process can be combined between the predecessor\rq s clustered image and successive image which fully depend on localized content of the predecessive clustered image. The reason why we adopted Anisotropic diffusion is each image has various type of background noises, but each feature can be localized in particular region since the feature (i.e., cell body and blood vessel) has morphological shape of characteristic. SimpleITK provides Anisotropic diffusion filter class. The input and output image must be a scalar with numerical type. (e.g, float and double)\\ 
 
 \subsubsection{\textbf{Median filtering}}
+
+Median filtering is a nonlinear filtering that often uses for noise reduction in digital signal processing as well as digital image processing. Median filtering is effective not only excellent in noise reduction, but also preserving edges. However, it requires large cost of computing depends on size of filtering mask. Fig. 8 shows an example of Median filtering. Each neighboring pixel values replaces each entry with the median of neighboring entries. All immediate pixel values in the window are reordered in ascending sequence and calculate the median value in single array. Then, the calculated median value, in this case 124 in Fig 8.(b), replaces with center value (pixel) of the window, therefore, each entry pixel value has been smoothing by surrounding pixel values. 
+
+$$
+\emph{Rx,g = N $\lfloor$ n / 2 $\rfloor$}\\
+$$
+
+where,
+
+$$
+\emph{Rx,g : median pixel value.}
+$$
 
 \begin{figure}
         \centering
@@ -692,135 +719,163 @@ $$
         \end{subfigure}
         
         \caption{\textbf{Median filtering principle.} (a) Image with a noise in the center with pixel
-value (150), surrounded by correct neighboring values. (b) The median filtering
-result. The noise pixel value 150 is replaced with 124, so that the distinctive
-pixel value is smoothed to be similar to neighboring pixel values. Adapted
-from \cite{Justusson} \cite{Dongkun}} 
-\label{fig7}
+value (150), surrounded by correct neighboring values. (b) The median filtering result. The noise pixel value 150 is replaced with 124, so that the distinctive
+pixel value is smoothed to be similar to neighboring pixel values. Adapted from \cite{Justusson} \cite{Dongkun}}. 
+\label{fig8}
 \end{figure}
+
+In this paper, the raw Nissl stained image data has noise and artifact in sectioned imaged while data acquisition by KESM. Fig 7.(b) displays that has uneven area and knife chatter which leads to significant information loss. Compared with Fig 7.(a), most part of the damaged area in (b) has no stem and cerebrum information. Due to knife vibration while image sampling, the quality of sectioned image has been degraded, moreover, it is impossible to revoke each sectioned result after cutting the mouse brain because the sectioned surface of each tissue by the microscopy will not be reconstructed. In addition, on the top right of Fig 7.(b) shows high frequency chatter due to knife vibration. In this sense, Median filtering is inevitable procedure to compensate information lossy region. 
 
 
 \subsection{\textbf{Image segmentation (Extract specific region)}}
 
+Since the Nissl stained image is likely to have a various type of intensities because it stains cell body and endoplasmic reticulum. In this sense, excessive intensities in background hinder to segment desired region. For this reason, we adopted Otus’ multiple threshold method in SimpleITK \cite{Lowekamp}. Owing to the fact CurvurtureAnistropicDiffusion class in SimpleITK filtered out image with numerical pixel type, it needs to transform the linear scale levels of intensity. In this case, it should be rescaled gray scale intensity, maximum to 255 and minimum to 0, because we extracted highest level intensity among designated level of intensities.\\
 
+\subsubsection{\textbf{Multiple threshold}}
 
-\subsubsection{\textbf{3D volume data reconstruction}}
+Otsu\rq s optimal threshold algorithm clusters two bimodal histogram, therefore, it finds automatical image threshold based on clustering classes. The optimal threshold algorithm calculates the optimum threshold separating the two classes so that their combined spread is minimal\cite{Otsu}. However, Otsu\rq optimal threshold method not outperforms in Nissl stained image since it has too much various intensities in background,  Fig 5. represents the problem of employing Otsu\rq s optimal single level threshold method. In this sense, we divided into more precise levels. The number of level is empirical derivation since there are no difference between level 5 and level 6 as well as above.\\
 
+If multi level is 5-level, then, 
+
+\begin{center}
+If \emph{f (x, y) $<$ $T_1$} then\\
+\emph{f (x, y) = 255}\\
+else If $T_1$ $\leq$ \emph{f (x, y) $<$ $T_2$} then\\
+\emph{f (x, y) = 196}\\
+else If $T_2$ $\leq$ \emph{f (x, y) $<$ $T_3$} then\\
+\emph{f (x, y) = 128}\\
+else If $T_3$ $\leq$ \emph{f (x, y) $<$ $T_4$} then\\
+\emph{f (x, y) = 64}\\
+else \emph{f (x, y) = 0}
+\end{center}
+
+Therefore, by using the multi-layer threshold algorithm, we derived the distinctive feature in Nissl stained imaged. Fig 6.(b) shows the result after applied Otsu\rq s multi-level threshold, in this case, level 5.\\
+
+\subsubsection{\textbf{Rescale intensity}}
+
+The previous result has been transformed in numerical pixel type since we used CurvurtureAnisoDiffusion class in SimpleITK, the image needs to be rescaled in gray scale intensity, maximum to 255 and minimum to 0, because we wish to extract highest level intensity among 5 levels of intensity. This applies a linear transformation to the intensity level of the input image\cite{Lowekamp}. Following equation will mapping the intensity values.
+
+$$
+outputPixel=(inputPixel-inputMin)\times
+$$
+$$
+ \frac{outputMax-outputMin}{inputMax-inputMin}-outputMin
+$$\\
+
+After rescaling intensity, we extracted highest intensity level that tends to contain blood vessel. Fig 7.(b) displays the final result of the image segmentation.\\ 
 
 \begin{figure}
         \centering
-        \begin{subfigure}{0.26\textwidth}
+        \begin{subfigure}{0.4\textwidth}
                 \includegraphics[width=\textwidth]{3D_volume_data_reconstruction.jpg}
                 \caption{Set view : X-Z Axis}
                 \label{fig:X-Y Axis}
         \end{subfigure}
         \hfill 
-        \begin{subfigure}{0.21\textwidth}
+        \begin{subfigure}{0.4\textwidth}
                 \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_1.jpg}
                 \caption{Set view : X-Y Axis}
                 \label{fig:X-Y Axis}
         \end{subfigure}
         
         \caption{\textbf{3D volume data reconstruction}}
-\label{fig8}
-\end{figure}
-
-
-\subsubsection{\textbf{Rendering center-lines}}
-
-
-\begin{figure}
-        \centering
-        \begin{subfigure}{0.26\textwidth}
-                \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_centerline.jpg}
-                \caption{Set view : X-Z Axis}
-                \label{fig:X-Y Axis}
-        \end{subfigure}
-        \hfill 
-        \begin{subfigure}{0.21\textwidth}
-                \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_centerline_1.jpg}
-                \caption{Set view : X-Y Axis}
-                \label{fig:X-Y Axis}
-        \end{subfigure}
-        
-        \caption{\textbf{3D volume data reconstruction with Center-line}}
 \label{fig9}
 \end{figure}
 
+In this section, preprocessing (image segmentation) step considers a cornerstone to render appropriate center-line. By using this, we reconstructed the vectorized 3D volume in Nissl stained image. Although several high frequency knife chatter region and lighting noise still not segmented properly, the result that obtained from applying Multi-layer threshold method is promising due to the fact that vector tracing based algorithm will reject non-contiguous pixel, along with x-y-z coordinates in the stack of 2D images. In other words, vector tracing based algorithm is robust to noise, if the noise has no continuous relevance. 
 
-\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-\node[shape=circle,draw,inner sep=0.5pt] (char) {#1};}}
+\subsection{\textbf{3D volume data reconstruction}}
 
-\subsubsection{\textbf{Rendering Automatic elimination of duplicated capillaries}}
+The 3D volume data was processed to show a three-dimensional view. The KESM data is basically a large 3D image stack consisting of 2D images. The three-dimensional visualization methods help us better explore the KESM data.\cite{Wenjie} David M. Mayerich who was one of the members of BNL, he developed KESM stack processor which enables to stack the 2D image sequence to a small 3D volumetric file. We used KESM stack processor program for reconstructing 3D volumetric file using our segmented stained Nissl data set. Fig 9. shows the set view of 3D image volume data which rendered by KESM stack processor and visualized by a visualization tool kit (paraview).  
 
-Before tracing the vascular by Flatbox, seed points on the six surfaces of the volume were generated. However, while tracing the vascular volume, the same part of vessel might be traced multiple times if multiple seed points on different surfaces lead to the same vessel. As a result, duplicated tracing results with different  tracing directions can exist for a single vessel and the processing time increase as a result. Tracing from all the seed points on every surfaces of the volume would reduce missed vessels, but the redundant seed points can cause the duplicated tracing issue at the same time. \cite{Wenjie} We made a algorithm for solving the problem of duplicated tracing result. Fig.10 shows the results of the tracing vascular from two seed points. They found a same vascular approaching from the other direction’s seed points. This shows that number 1 and number 2 are duplicated, which is the same capillary. 
-First, we retrieve the seed point data and its list of branches. Second, check the seed point of \circled{1} in Fig 1 and the other’s end point of its capillary \circled{2} in Fig 10. If each x-y-z coordinate are in close boundary by calculating Manhattan distance, check the endpoint of \circled{1} and the other seed point of \circled{2}, applying the same distance measurement for each x-y-z coordinate. We can assume that if those which are in the same boundary are meet the segmentation criteria as well as vice versa, there are duplicated. For further understanding,  we set the value of the boundary as 4, which is heuristic founding by manual elimination. Third, eliminate one of duplicated capillaries and keep tracking next seed point whether they are in the boundary or not. Algorithm 1 is our pseudo code.\\
-After applying algorithm, the result has been enhanced compared with not eliminated capillaries. Fig 11. (a) shows the not applying the automatic elimination algorithm and Fig 11. (b) indicates the result after applying the algorithm. We can see the difference between them. Also, the complexity, in this case the vtk size and its coordinates, has been enormously reduced. 
+\subsection{\textbf{Rendering center-lines}}
 
-\begin{figure}
-        \centering
-        \includegraphics[width=0.34\textwidth]{algorithm.jpg}
-        \caption{\textbf{Algorithm of elimination of duplicated capillaries}}
-		\label{fig10}
-\end{figure}
-
+Since vessels can be represented the centerline that consist of center point, we adopted automatic flat box traversing algorithm \cite{Wenjie} for rendering centerlines. This exploration algorithm is consist of four steps: (1) moving flat box which started from each seed point by keeping a list of predicted centerline. (2) The candidate of child centerpoint (vessels) are traversed by using breadth-first-search. Bifurcation points in each branch enqueue into a queue for further exploration. (3)  Traversing a flax box from each point in the queue. If the x-y-z coordinates of the point which has been validated among the candidates, create a new list to store its values and store bifurcation points in to the list as well. (4) If the point has been checked, remove the point from the queue. If the queue is empty, terminate the traversing.
+Integrated result of the list which has been recorded is the vectorized vasculature. Fig 10. shows the set view of set view of center-line which can be rendered by the flat box traversing algorithm and visualized by a visualization tool kit (paraview).  
 
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
 
 \begin{algorithm}
-\caption{My algorithm}\label{euclid}
+\caption{Elimination for Duplicated Capillaries}\label{euclid}
 \begin{algorithmic}[1]
-\Procedure{MyProcedure}{}
-\State $\textit{stringlen} \gets \text{length of }\textit{string}$
-\State $i \gets \textit{patlen}$
-\BState \emph{top}:
-\If {$i > \textit{stringlen}$} \Return false
+\Procedure{Elimination}{}
+\State $\textit{Boundary} \gets \text{int}$
+\State $i \gets \textit{int}$
+\State $j \gets \textit{int}$
+\State $s \gets \textit{size of brnach}$
+\State $branch \gets \textit{List of vector}$
+\State $new \gets \textit{Copy of list of vector}$
+\State \emph{loop i:}
+\If {$\textit{branch}[i][0]-\textit{branch}[j][0]< Boundary$}
+\State \emph{loop j:}
+\If {$\textit{branch}[i][s]-\textit{branch}[j][s]<Boundary$}
+\State $\textit{eliminate i-th branch}$
 \EndIf
-\State $j \gets \textit{patlen}$
-\BState \emph{loop}:
-\If {$\textit{string}(i) = \textit{path}(j)$}
-\State $j \gets j-1$.
-\State $i \gets i-1$.
-\State \textbf{goto} \emph{loop}.
-\State \textbf{close};
+\State \textbf{goto} \emph{loop} j
 \EndIf
-\State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
-\State \textbf{goto} \emph{top}.
+\State \textbf{goto} \emph{loop} i
+\State $\textit{new} \gets \text{branch}$
+\BState \textbf{close};
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
 
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.4\textwidth}
+                \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_centerline.jpg}
+                \caption{Set view : X-Z Axis}
+                \label{fig:X-Y Axis}
+        \end{subfigure}
+        \hfill 
+        \begin{subfigure}{0.4\textwidth}
+                \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_centerline_1.jpg}
+                \caption{Set view : X-Y Axis}
+                \label{fig:X-Y Axis}
+        \end{subfigure}
+        
+        \caption{\textbf{3D volume data reconstruction with Center-line}}
+\label{fig10}
+\end{figure}
 
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+\node[shape=circle,draw,inner sep=0.5pt] (char) {#1};}}
 
+\begin{figure}[b]
+        \centering
+        \includegraphics[width=0.35\textwidth]{algorithm.jpg}
+        \caption{\textbf{Algorithm of elimination of duplicated capillaries}}
+		\label{fig11}
+\end{figure}
 
 \begin{figure}
         \centering
-        \begin{subfigure}{0.23\textwidth}
+        \begin{subfigure}{0.32\textwidth}
                 \includegraphics[width=\textwidth]{original.jpg}
                 \caption{Original}
                 \label{fig:original}
         \end{subfigure}
         \hfill 
-        \begin{subfigure}{0.23\textwidth}
+        \begin{subfigure}{0.32\textwidth}
                 \includegraphics[width=\textwidth]{elimination.jpg}
                 \caption{Elimination}
                 \label{fig:elimination}
         \end{subfigure}
         
         \caption{\textbf{Automatic elimination og duplicated capillaries}}
-\label{fig11}
+\label{fig12}
 \end{figure}
 
-
-\section{\textbf{Development Environment}}
-
-
-\section{\textbf{Results}}
-
+\subsection{\textbf{Automatic elimination of duplicated capillaries}}
+Since the vascular network contains multiple list of points where each list represents a vessels. In other words, seed points on the six surfaces of the 3D volume data reconstruction were generated by Faltbox traversing that stated above. However, while tracing the vascular 3D volume, the same centerline of vessel might be traced multiple times if duplicated seed points in the particular boundary on different surfaces shows to duplicated capillaries. As a result, duplicated tracing results with different tracing directions can be existed for a single vessel and the processing time increased. Tracing from all the seed points on every surfaces of the volume would prevent omitting  microvascular, but the redundant seed points can cause the duplicated tracing issue at the same time. \cite{Wenjie} We made a algorithm for solving the problem of duplicated tracing result. Algorithm 1 is the pseudocode of  elimination of duplicated capillaries. Fig.10 shows the results of the tracing vascular from two seed points. They found same vasculars approaching from the other direction’s seed points. This shows that number 1 and number 2 are duplicated, which is the same capillary.
+First, we retrieve the seed point data and its list of branches. Second, check the seed point of \circled{1} in Fig 1 and the other’s end point of its capillary \circled{2} in Fig 10. If each x-y-z coordinate are in close boundary by calculating Manhattan distance, check the endpoint of \circled{1} and the other seed point of \circled{2}, applying the same distance measurement for each x-y-z coordinate. We can assume that if those which are in the same boundary are meet the segmentation criteria as well as vice versa, there are duplicated. For further understanding, we set the value of the boundary as 5, which is heuristic founding by manual elimination. Third, eliminate one of duplicated capillaries and keep tracking next seed point whether they are in the boundary or not. Algorithm 1 is the pseudocode of the automatic elimination process.\\
+After applying algorithm, the result has been enhanced compared with not eliminated capillaries. Fig 2. (a) shows the not applying the automatic elimination algorithm and Fig 12. (b) indicates the result after applying the algorithm.  
 
 \section{\textbf{Conclusion and Future work}}
+
+In this paper, the cropped raw Nissl stained image data set has been successfully reconstructed in 3D vectorized volume. This result is promising because recent studies are considered the vectorizing micro-vascular in 3D volume with Nissl stained method is perplexing. To summarize this project, we obtained the raw Nissl stained data set from KESM. Afterword, since the data set has various type of noises, we attempted to reduce the noise by exploiting image processing techniques: Anisotropic diffusion filtering, Median filtering, Ostu\rq s multi-level optimal threshold and rescaling intensity. Finally, the process of 3D reconstruction, rendering center-lines and automatic elimination for duplicated capillaries have been use for the 3D vectorized reconstruction. To rendering final artifact, we take advantage of 500$\times500$ pixel size 2D image with 100 surfaces. For the future work, we are going to segment more bigger pixel and images than we used. Also, adaptive threshold algorithm and machine learning technique can be used by learning the ground truth for better result.
 
 
 % trigger a \newpage just before the given reference
@@ -846,17 +901,21 @@ After applying algorithm, the result has been enhanced compared with not elimina
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
 
-
+\section*{Acknowledgement}
+We are thankful for Dr. Ji, who is instructor of  ECEN 642, Digital Image Processing  due to the fact that led us to improve our research. We also appreciate for PhD student Aydin the our class marker grader. This paper aims to submit final project of ECEN 642, Digital Image Processing, in Fall 2014. 
 
 \begin{thebibliography}{1}
 
+%[1]
 \bibitem{Kau}
-Kaufhold, John P., et al.  \emph{Vectorization of optically sectioned brain microvasculature: Learning aids completion of vascular graphs by connecting gaps and deleting open-ended segments}\hskip 1em plus 0.5em minus 0.4em\relax Medical image analysis 16.6 (2012): 1241-1258.
-  
+Kaufhold, John P., et al.  \emph{Vectorization of optically sectioned brain microvasculature: Learning aids completion of vascular graphs by connecting gaps and deleting open-ended segments}\hskip 1em plus 0.5em minus 0.4em\relax Medical image analysis 16.6 (2012): 1241$\sim$1258.
+ 
+%[2] 
 \bibitem{Mayerich}  
 D. Mayerich, L. Abbott and B. Mccormick, \emph{Knife-edge scanning microscopy for imaging and reconstruction of three-dimensional anatomical structures of the mouse brain,} \hskip 1em plus
   0.5em minus 0.4em Journal of Microscopy, Vol. 231, Pt 1 2008, pp. 134$\sim$143.
-  
+ 
+%[3]  
 \bibitem{Choe}  
 Y. Choe, L. C. Abbott, D. Han, P.-S. Huang, J. Keyser, J. Kwon,
 D. Mayerich, Z. Melek, and B. H. McCormick, \emph{Knife-edge scanning
@@ -867,38 +926,74 @@ Reconstruction and Analysis: Intelligent Microscopy Applications,
 A. R. Rao and G. Cecchi, Eds. Boston, MA: Artech House, 2008,
 pp. 11$\sim$37.
 
+%[4]
 \bibitem{McCormick} 
 Bruce H. McCormick, \emph{Development of the Brain Tissue Scanner}, \hskip 1em plus 0.5em minus 0.4em Brain Networks Laboratory Technical Report, 2002.
 
+%[5]
+\bibitem{Glaser}
+Glaser, Edmund M., and Hendrik Van der Loos, \emph{Analysis of thick brain sections by obverse—Reverse computer microscopy: Application of a new, high clarity Golgi—Nissl stain.}, \hskip 1em plus 0.5em minus 0.4em Journal of neuroscience methods 4.2 (1981): 117$\sim$125.
+
+%[6]
+\bibitem{Chul}
+Sung, Chul, et al. \emph{Scalable, incremental learning with MapReduce parallelization for cell detection in high-resolution 3D microscopy data}, \hskip 1em plus 0.5em minus 0.4em Neural Networks (IJCNN), The 2013 International Joint Conference on. IEEE, 2013.
+
+%[7]
+\bibitem{Weickert}
+Weickert, Joachim, \emph{Anisotropic diffusion in image processing.} \hskip 1em plus 0.5em minus 0.4em Vol. 1. Stuttgart: Teubner, 1998.
+
+%[8]
+\bibitem{Justusson}
+B. I. Justusson, \emph{Two-dimensional digital signal prcessing II.}, \hskip 1em plus 0.5em minus 0.4em Topics in Applied Physics, vol. 43, pp. 161$\sim$196, 1981.
+
+%[9]
+\bibitem{Otsu}
+Otsu, Nobuyuki, \emph{A threshold selection method from gray-level histograms.}, \hskip 1em plus 0.5em minus 0.4em Automatica 11.285$\sim$296 (1975): 23$\sim$27.
+
+%[10]
 \bibitem{Yoonsuck} 
 Yoonsuck Choe, David Mayerich, Jaerock Kwon, Daniel E. Miller, Ji Ryang Chung,Chul Sung, John Keyser, and Louise C. Abbott, \emph{Knife-Edge Scanning Microscopy for Connectomics Research}
 \hskip 1em plus 0.5em minus 0.4em Neural Networks (IJCNN), The 2011 International Joint Conference, July 31 2011-Aug. 5 2011, pp. 2258$\sim$2265
   
-  
+%[11]  
 \bibitem{wenjie}
 H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 2014.
 
-
+%[12]
 \bibitem{Berislav}
 Burials Zlokovic, \emph{The blood-brain barrier in health and chronic neurodegenerative disorders} \hskip 1em plus 0.5em minus 0.4em Neuron, vol. 57, pp. 178$\sim$201, 2008.
 
-\bibitem{Chul}
-Sung, Chul, et al. \emph{Scalable, incremental learning with MapReduce parallelization for cell detection in high-resolution 3D microscopy data}, \hskip 1em plus 0.5em minus 0.4em Neural Networks (IJCNN), The 2013 International Joint Conference on. IEEE, 2013.
-
+%[13]
 \bibitem{Choe2010}
 Y. Choe, L. C. Abbott, D. E. Miller, D. Han, H.-F. Yang, J. R. Chung, C. Sung, D.
 Mayerich, J. Kwon, K. Micheva, and S. J. Smith. \emph{Multiscale imaging, analysis,
 and integration of mouse brain networks.}, \hskip 1em plus 0.5em minus 0.4em Neuroscience Meeting Planner. San Diego, CA: Society for Neuroscience, 2010.
 
+%[14]
 \bibitem{Wenjie}
-Wenjie Yang, \emph{Automated neurovascular tracing and analysis of the Knife=Edge Scanning Microscope India Ink Data Set.}, \hskip 1em plus 0.5em minus 0.4em Texas A\&M\ University, 2014
+Wenjie Yang, \emph{Automated neurovascular tracing and analysis of the Knife=Edge Scanning Microscope India Ink Data Set.}, \hskip 1em plus 0.5em minus 0.4em Texas A\&M\ University, 2014.
 
-\bibitem{Justusson}
-B. I. Justusson, \emph{Two-dimensional digital signal prcessing II.}, \hskip 1em plus 0.5em minus 0.4em Topics in Applied Physics, vol. 43, pp. 161–196, 1981.
-
+%[15]
 \bibitem{Dongkun}
-Dongkun Kim, \emph{Autonomic Seedpoint and Tracing of Microstructures in the Knife-Edge Scanning Microscope Mouse Brain Data Set}, \hskip 1em plus 0.5em minus 0.4em Texas A\&M\ University, 2011
+Dongkun Kim, \emph{Autonomic Seedpoint and Tracing of Microstructures in the Knife-Edge Scanning Microscope Mouse Brain Data Set}, \hskip 1em plus 0.5em minus 0.4em Texas A\&M\ University, 2011.
+
+%[16]
+\bibitem{Sezgin}
+Sezgin and B. Sankur, \emph{Survey over image thresholding techniques and quantitative performance evaluation.}  \hskip 1em plus 0.5em minus 0.4em Journal of Electronic Imaging13 (1): 146$\sim$165. 2004.
+
+%[17]
+\bibitem{Lowekamp}
+Lowekamp, Bradley C., et al. \emph{The Design of SimpleITK.} \hskip 1em plus 0.5em minus 0.4em Frontiers in neuroinformatics 7, 2013.
+
+%[18]
+\bibitem{Pietro}
+Pietro Perona and Jitendra Malik, \emph{Scale-space and edge detection using anisotropic diffusion.} \hskip 1em plus 0.5em minus 0.4em IEEE Transactions on Pattern Analysis and Machine Intelligence, 12 (7): 629$\sim$639, 1990.
+
+%[19]
+\bibitem{Still}
+Still, Michael, \emph{The definitive guide to ImageMagick. Vol. 1.} \hskip 1em plus 0.5em minus 0.4em Berkeley: Apress, 2006.
+
 
 
 \end{thebibliography}
