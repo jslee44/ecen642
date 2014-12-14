@@ -1,4 +1,4 @@
-%% Updated 12_13_2014_16:25
+%% Updated 12_13_2014_18:24
 
 
 %% bare_conf.tex
@@ -632,7 +632,7 @@ of the knife where the distortion is minimal. Illumination is provided through t
 
 We attempted to segment blood vessel in cropped image by 500x500 pixel. The most challenging part in our research is analyzing characteristic of Nissl data image because each stained feature has peculiarized attribute and idiosyncrasy of the sectioned region such as data loss while sectioning image. Furthermore, segmenting whole-brain image is problematic since the ground truth of grayscale mouse brain image by Nissl stained method has not been fully learned by human operator which cannot be undone. Even though the image data set has numerous neuronal information, we are still struggling to define unprobed region in brain structure. Lastly, the data set has more than 12,000 sectioned images, therefore, finding reasonable images in the data set was a time-consuming task. In this research, we aimed to find appropriate images in the data set and applied image processing algorithm by many times of trial-and-error attempts through empirical observations.\\
 
-Although Otsu\rq s optimal threshold method is capable of automatically perform clustering-based image thresholding \cite{Sezgin} or reduction of the gray level image to a binary image, single optimal threshold not eligible to segment desired region (e.g., blood vessels). To be specific, Fig. 4 (b) is close-up image which applied single level Otsu\rq s  threshold method that generated from Fig. 4 (a). Because raw Nissl stained image tends to have a noise acquired from data acquisition step (e.g., knife chatter and image blurred phenomenon due to speed of acquisition by KESM). Therefore, we exploited Anisotropic Diffusion filtering and Median image filtering method in order to make a breakthrough the deficiencies for segmenting desired region. 
+Although Otsu\rq s optimal threshold method is capable of automatically perform clustering-based image thresholding \cite{Sezgin} or reduction of the gray level image to a binary image, single optimal threshold not eligible to segment desired region (e.g., blood vessels). To be specific, Fig. 4 (b) is close-up image which applied single level Otsu\rq s  threshold method that generated from Fig. 4 (a). Because raw Nissl stained image tends to have a noise acquired from data acquisition step (e.g., knife chatter and image blurred phenomenon due to speed of acquisition by KESM). Also, there is blurred area in Nissl stained image, Fig 4.(a), distinctive division is necessary to segment desired region. Therefore, we exploited Anisotropic Diffusion filtering and Median image filtering method in order to make a breakthrough the deficiencies for segmenting desired region. 
 \begin{figure}
         \centering
         \begin{subfigure}{0.23\textwidth}
@@ -733,7 +733,27 @@ Since the Nissl stained image is likely to have a various type of intensities be
 
 \subsubsection{\textbf{Multiple threshold}}
 
+Otsu\rq s optimal threshold algorithm clusters two bimodal histogram, therefore, it finds automatical image threshold based on clustering classes. The optimal threshold algorithm calculates the optimum threshold separating the two classes so that their combined spread is minimal\cite{Otsu}. However, Otsu\rq optimal threshold method not outperforms in Nissl stained image since it has too much various intensities in background,  Fig 5. represents the problem of employing Otsu\rq s optimal single level threshold method. In this sense, we divided into more precise levels. The number of level is empirical derivation since there are no difference between level 5 and level 6 as well as above.\\
+
+If multi level is 5-level, then, 
+
+\begin{center}
+If \emph{f (x, y) $<$ $T_1$} then\\
+\emph{f (x, y) = 255}\\
+else If $T_1$ $\leq$ \emph{f (x, y) $<$ $T_2$} then\\
+\emph{f (x, y) = 196}\\
+else If $T_2$ $\leq$ \emph{f (x, y) $<$ $T_3$} then\\
+\emph{f (x, y) = 128}\\
+else If $T_3$ $\leq$ \emph{f (x, y) $<$ $T_4$} then\\
+\emph{f (x, y) = 64}\\
+else \emph{f (x, y) = 0}
+\end{center}
+
+Therefore, by using the multi-layer threshold algorithm, we derived the distinctive feature in Nissl stained imaged. Fig 6.(b) shows the result after applied Otsu\rq s multi-level threshold, in this case, level 5.\\
+
 \subsubsection{\textbf{Rescale intensity}}
+
+The previous result has been transformed in numerical pixel type since we used CurvurtureAnisoDiffusion class in SimpleITK, the image needs to be rescaled in gray scale intensity, maximum to 255 and minimum to 0, because we wish to extract highest level intensity among 5 levels of intensity. This applies a linear transformation to the intensity level of the input image\cite{Lowekamp}. Following equation will mapping the intensity values.
 
 $$
 outputPixel=(inputPixel-inputMin)\times
@@ -742,6 +762,7 @@ $$
  \frac{outputMax-outputMin}{inputMax-inputMin}-outputMin
 $$\\
 
+After rescaling intensity, we extracted highest intensity level that tends to contain blood vessel. Fig 7.(b) displays the final result of the image segmentation.\\ 
 
 \section{\textbf{Development Environment}}
 
@@ -757,6 +778,9 @@ $$\\
 \end{flushleft}
 
 \section{\textbf{Results}}
+
+In this section, preprocessing (image segmentation) step considers a cornerstone to render appropriate center-line. By using this, we reconstructed the vectorized 3D volume in Nissl stained image. Although several high frequency knife chatter region and lighting noise still not segmented properly, the result that obtained from applying Multi-layer threshold method is promising due to the fact that vector tracing based algorithm will reject non-contiguous pixel, along with x-y-z coordinates in the stack of 2D images. In other words, vector tracing based algorithm is robust to noise, if the noise has no continuous relevance. 
+
 
 \subsection{\textbf{3D volume data reconstruction}}
 
@@ -803,8 +827,8 @@ $$\\
 
 \subsection{\textbf{Automatic elimination of duplicated capillaries}}
 
-Seed points on the six surfaces of the 3D volume data reconstruction were generated. However, while tracing the vascular 3D volume, the same part of vessel might be traced multiple times if multiple seed points on different surfaces lead to the same vessel. As a result, duplicated tracing results with different  tracing directions can exist for a single vessel and the processing time increased. Tracing from all the seed points on every surfaces of the volume would reduce missed vessels, but the redundant seed points can cause the duplicated tracing issue at the same time \cite{Wenjie}. We made a algorithm for solving the problem of duplicated tracing result.  Algorithm 1 is the pseudocode of  elimination of duplicated capillaries. Fig.10 shows the results of the tracing vascular from two seed points. They found a same vascular approaching from the other direction’s seed points. This shows that number 1 and number 2 are duplicated, which is the same capillary.
-First, we retrieve the seed point data and its list of branches. Second, check the seed point of \circled{1} in Fig 1 and the other’s end point of its capillary \circled{2} in Fig 10. If each x-y-z coordinate are in close boundary by calculating Manhattan distance, check the endpoint of \circled{1} and the other seed point of \circled{2}, applying the same distance measurement for each x-y-z coordinate. We can assume that if those which are in the same boundary are meet the segmentation criteria as well as vice versa, there are duplicated. For further understanding,  we set the value of the boundary as 4, which is heuristic founding by manual elimination. Third, eliminate one of duplicated capillaries and keep tracking next seed point whether they are in the boundary or not. Algorithm 1 is our pseudo code.\\
+Seed points on the six surfaces of the 3D volume data reconstruction were generated. However, while tracing the vascular 3D volume, the same part of vessel might be traced multiple times if multiple seed points on different surfaces lead to the same vessel. As a result, duplicated tracing results with different  tracing directions can exist for a single vessel and the processing time increased. Tracing from all the seed points on every surfaces of the volume would reduce missed vessels, but the redundant seed points can cause the duplicated tracing issue at the same time \cite{Wenjie}. We made a algorithm for solving the problem of duplicated tracing result.  Algorithm 1 is the pseudo code of  elimination of duplicated capillaries. Fig.10 shows the results of the tracing vascular from two seed points. They found a same vascular approaching from the other direction\rq s seed points. This shows that number 1 and number 2 are duplicated, which is the same capillary.
+First, we retrieve the seed point data and its list of branches. Second, check the seed point of \circled{1} in Fig 1 and the other\rq s end point of its capillary \circled{2} in Fig 10. If each x-y-z coordinate are in close boundary by calculating Manhattan distance, check the endpoint of \circled{1} and the other seed point of \circled{2}, applying the same distance measurement for each x-y-z coordinate. We can assume that if those which are in the same boundary are meet the segmentation criteria as well as vice versa, there are duplicated. For further understanding,  we set the value of the boundary as 4, which is heuristic founding by manual elimination. Third, eliminate one of duplicated capillaries and keep tracking next seed point whether they are in the boundary or not. Algorithm 1 is our pseudo code.\\
 After applying algorithm, the result has been enhanced compared with not eliminated capillaries. Fig 11. (a) shows the not applying the automatic elimination algorithm and Fig 11. (b) indicates the result after applying the algorithm. We can see the difference between them. Also, the complexity, in this case the vtk size and its coordinates, has been enormously reduced.
 
 \begin{figure}
@@ -892,7 +916,8 @@ Nissl Stained raw images have various type of noises. By using image processing 
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
 
-
+\section*{Acknowledgement}
+We are thankful for Dr. Ji, who is instructor of  ECEN 642, Digital Image Processing  due to the fact that led us to improve our research. We also appreciate for PhD student Aydin the our class marker grader. This paper aims to submit final project of ECEN 642, Digital Image Processing, in Fall 2014. 
 
 \begin{thebibliography}{1}
 
