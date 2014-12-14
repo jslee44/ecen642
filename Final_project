@@ -1,4 +1,4 @@
-%% Updated 12_13_2014_19:15
+%% Updated 12_13_2014_19:34 before Dinner
 
 
 %% bare_conf.tex
@@ -873,8 +873,7 @@ After applying algorithm, the result has been enhanced compared with not elimina
 
 \section{\textbf{Conclusion and Future work}}
 
-In this paper, we obtained Nissl Stained raw images using KESM which have various type of noises. So, we used many kinds of  image processing techniques that we have learned in the class. Finally, we successfully segmented the desired region with 100 images of 500$\times$500 pixel size. Also using segmented Nissl stained data set, we rendered 3D reconstruction with center-line. At last, we described our current research about automatic elimination duplicated capillaries. 
-In future, we will segment those region with more bigger size and more images of Nissl stained image such as 1000$\times$1000 or 2000$\times$2000.
+In this paper, the cropped raw Nissl stained image data set has been successfully reconstructed in 3D vectorized volume. This result is promising because recent studies are considered the vectorizing micro-vascular in 3D volume with Nissl stained method is perplexing. To summarize this project, we obtained the raw Nissl stained data set from KESM. Afterword, since the data set has various type of noises, we attempted to reduce the noise by exploiting image processing techniques: Anisotropic diffusion filtering, Median filtering, Ostu\rq s multi-level optimal threshold and rescaling intensity. Finally, the process of 3D reconstruction, rendering center-lines and automatic elimination for duplicated capillaries have been use for the 3D vectorized reconstruction. To rendering final artifact, we take advantage of 500$\times500$ pixel size 2D image with 100 surfaces. For the future work, we are going to segment more bigger pixel and images than we used. Also, adaptive threshold algorithm and machine learning technique can be used by learning the ground truth for better result.
 
 
 % trigger a \newpage just before the given reference
