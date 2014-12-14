@@ -1,4 +1,4 @@
-%% Updated 12_13_2014_22:16
+%% Updated 12_13_2014_22:26
 
 
 %% bare_conf.tex
@@ -766,13 +766,13 @@ After rescaling intensity, we extracted highest intensity level that tends to co
 
 \begin{figure}
         \centering
-        \begin{subfigure}{0.4\textwidth}
+        \begin{subfigure}{0.35\textwidth}
                 \includegraphics[width=\textwidth]{3D_volume_data_reconstruction.jpg}
                 \caption{Set view : X-Z Axis}
                 \label{fig:X-Y Axis}
         \end{subfigure}
         \hfill 
-        \begin{subfigure}{0.4\textwidth}
+        \begin{subfigure}{0.35\textwidth}
                 \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_1.jpg}
                 \caption{Set view : X-Y Axis}
                 \label{fig:X-Y Axis}
@@ -785,19 +785,31 @@ After rescaling intensity, we extracted highest intensity level that tends to co
 In this section, preprocessing (image segmentation) step considers a cornerstone to render appropriate center-line. By using this, we reconstructed the vectorized 3D volume in Nissl stained image. Although several high frequency knife chatter region and lighting noise still not segmented properly, the result that obtained from applying Multi-layer threshold method is promising due to the fact that vector tracing based algorithm will reject non-contiguous pixel, along with x-y-z coordinates in the stack of 2D images. In other words, vector tracing based algorithm is robust to noise, if the noise has no continuous relevance. 
 
 \subsection{\textbf{3D volume data reconstruction}}
+The 3D volume data was processed to show a three-dimensional view. The KESM data is basically a large 3D image stack consisting of 2D images. The three-dimensional visualization methods help us better explore the KESM data \cite{Wenjie}. David M. Mayerich who was one of the members of BNL, he developed KESM stack processor which enables to stack the 2D image sequence to a small 3D volumetric file. We used KESM stack processor program for reconstructing 3D volumetric file using our segmented stained Nissl data set. Fig 9. shows the set view of 3D image volume data which rendered by KESM stack processor and visualized by a visualization tool kit (paraview). 
 
-The 3D volume data was processed to show a three-dimensional view. The KESM data is basically a large 3D image stack consisting of 2D images. The three-dimensional visualization methods help us better explore the KESM data \cite{Wenjie}. David M. Mayerich who was one of the members of BNL, he developed KESM stack processor which enables to stack the 2D image sequence to a small 3D volumetric file. We used KESM stack processor program for reconstructing 3D volumetric file using our segmented stained Nissl data set. Fig 9. shows the set view of 3D image volume data which rendered by KESM stack processor and visualized by a visualization tool kit (paraview).  
-
-\subsection{\textbf{Rendering center-lines}}
-
-Since vessels can be represented the centerline that consist of center point, we adopted automatic flat box traversing algorithm \cite{Wenjie} for rendering centerlines. This exploration algorithm is consist of four steps: (1) moving flat box which started from each seed point by keeping a list of predicted centerline. (2) The candidate of child centerpoint (vessels) are traversed by using breadth-first-search. Bifurcation points in each branch enqueue into a queue for further exploration. (3)  Traversing a flax box from each point in the queue. If the x-y-z coordinates of the point which has been validated among the candidates, create a new list to store its values and store bifurcation points in to the list as well. (4) If the point has been checked, remove the point from the queue. If the queue is empty, terminate the traversing.
-Integrated result of the list which has been recorded is the vectorized vasculature. Fig 10. shows the set view of set view of center-line which can be rendered by the flat box traversing algorithm and visualized by a visualization tool kit (paraview).  
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.35\textwidth}
+                \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_centerline.jpg}
+                \caption{Set view : X-Z Axis}
+                \label{fig:X-Y Axis}
+        \end{subfigure}
+        \hfill 
+        \begin{subfigure}{0.35\textwidth}
+                \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_centerline_1.jpg}
+                \caption{Set view : X-Y Axis}
+                \label{fig:X-Y Axis}
+        \end{subfigure}
+        
+        \caption{\textbf{3D volume data reconstruction with Center-line}}
+\label{fig10}
+\end{figure}
 
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
 
-\begin{algorithm}
+\begin{algorithm}[b]
 \caption{Elimination for Duplicated Capillaries}\label{euclid}
 \begin{algorithmic}[1]
 \Procedure{Elimination}{}
@@ -820,25 +832,7 @@ Integrated result of the list which has been recorded is the vectorized vasculat
 \BState \textbf{close};
 \EndProcedure
 \end{algorithmic}
-\end{algorithm}
-
-\begin{figure}
-        \centering
-        \begin{subfigure}{0.4\textwidth}
-                \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_centerline.jpg}
-                \caption{Set view : X-Z Axis}
-                \label{fig:X-Y Axis}
-        \end{subfigure}
-        \hfill 
-        \begin{subfigure}{0.4\textwidth}
-                \includegraphics[width=\textwidth]{3D_volume_data_reconstruction_centerline_1.jpg}
-                \caption{Set view : X-Y Axis}
-                \label{fig:X-Y Axis}
-        \end{subfigure}
-        
-        \caption{\textbf{3D volume data reconstruction with Center-line}}
-\label{fig10}
-\end{figure}
+\end{algorithm} 
 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
 \node[shape=circle,draw,inner sep=0.5pt] (char) {#1};}}
@@ -867,6 +861,10 @@ Integrated result of the list which has been recorded is the vectorized vasculat
         \caption{\textbf{Automatic elimination og duplicated capillaries}}
 \label{fig12}
 \end{figure}
+
+\subsection{\textbf{Rendering center-lines}}
+Since vessels can be represented the centerline that consist of center point, we adopted automatic flat box traversing algorithm \cite{Wenjie} for rendering centerlines. This exploration algorithm is consist of four steps: (1) moving flat box which started from each seed point by keeping a list of predicted centerline. (2) The candidate of child centerpoint (vessels) are traversed by using breadth-first-search. Bifurcation points in each branch enqueue into a queue for further exploration. (3)  Traversing a flax box from each point in the queue. If the x-y-z coordinates of the point which has been validated among the candidates, create a new list to store its values and store bifurcation points in to the list as well. (4) If the point has been checked, remove the point from the queue. If the queue is empty, terminate the traversing.
+Integrated result of the list which has been recorded is the vectorized vasculature. Fig 10. shows the set view of set view of center-line which can be rendered by the flat box traversing algorithm and visualized by a visualization tool kit (paraview).  
 
 \subsection{\textbf{Automatic elimination of duplicated capillaries}}
 Since the vascular network contains multiple list of points where each list represents a vessels. In other words, seed points on the six surfaces of the 3D volume data reconstruction were generated by Faltbox traversing that stated above. However, while tracing the vascular 3D volume, the same centerline of vessel might be traced multiple times if duplicated seed points in the particular boundary on different surfaces shows to duplicated capillaries. As a result, duplicated tracing results with different tracing directions can be existed for a single vessel and the processing time increased. Tracing from all the seed points on every surfaces of the volume would prevent omitting  microvascular, but the redundant seed points can cause the duplicated tracing issue at the same time. \cite{Wenjie} We made a algorithm for solving the problem of duplicated tracing result. Algorithm 1 is the pseudocode of  elimination of duplicated capillaries. Fig.10 shows the results of the tracing vascular from two seed points. They found same vasculars approaching from the other direction’s seed points. This shows that number 1 and number 2 are duplicated, which is the same capillary.
