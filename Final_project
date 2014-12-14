@@ -1,4 +1,4 @@
-%% Updated 12_13_2014_23:00
+%% Updated 12_13_2014_22:16
 
 
 %% bare_conf.tex
@@ -588,7 +588,7 @@ This project aims to visualize mouse brain microvasculature in 3D image. We can 
 
 \subsection{\textbf{Data acquisition}}
 
-Using KESM, we have been able to obtain whole-brainscale data from the mouse. \cite{Yoonsuck} The imaging principle of KESM is shown (b) in Fig. 3. The objective and the knife is held in place, while the specimen affixed on the positioning stage moves, and gets scrapedagainst the diamond knife, generating a thin section flowing over the knife. Line-scan imaging is done near the very tip
+Using KESM, we have been able to obtain whole-brainscale data from the mouse \cite{Yoonsuck}. The imaging principle of KESM is shown (b) in Fig. 3. The objective and the knife is held in place, while the specimen affixed on the positioning stage moves, and gets scrapedagainst the diamond knife, generating a thin section flowing over the knife. Line-scan imaging is done near the very tip
 of the knife where the distortion is minimal. Illumination is provided through the diamond knife (green beam indicates the light path). \cite{Yoonsuck} We use (a) in Fig. 2 for our project's raw data. We cropped the particular region of the Nissl stained image data set by using ImageMagick \cite{Still}. (500 $\times$ 500 pixels $\times$ 100 images)
 
 \begin{figure}
@@ -632,7 +632,7 @@ of the knife where the distortion is minimal. Illumination is provided through t
 
 We attempted to segment blood vessel in cropped image by 500x500 pixel. The most challenging part in our research is analyzing characteristic of Nissl data image because each stained feature has peculiarized attribute and idiosyncrasy of the sectioned region such as data loss while sectioning image. Furthermore, segmenting whole-brain image is problematic since the ground truth of grayscale mouse brain image by Nissl stained method has not been fully learned by human operator which cannot be undone. Even though the image data set has numerous neuronal information, we are still struggling to define unprobed region in brain structure. Lastly, the data set has more than 12,000 sectioned images, therefore, finding reasonable images in the data set was a time-consuming task. In this research, we aimed to find appropriate images in the data set and applied image processing algorithm by many times of trial-and-error attempts through empirical observations.\\
 
-Although Otsu\rq s optimal threshold method is capable of automatically perform clustering-based image thresholding \cite{Sezgin} or reduction of the gray level image to a binary image, single optimal threshold not eligible to segment desired region (e.g., blood vessels). To be specific, Fig. 4 (b) is close-up image which applied single level Otsu\rq s  threshold method that generated from Fig. 4 (a). Because raw Nissl stained image tends to have a noise acquired from data acquisition step (e.g., knife chatter and image blurred phenomenon due to speed of acquisition by KESM). Also, there is blurred area in Nissl stained image, Fig 4.(a), distinctive division is necessary to segment desired region. Therefore, we exploited Anisotropic Diffusion filtering and Median image filtering method in order to make a breakthrough the deficiencies for segmenting desired region. 
+Although Otsu\rq s optimal threshold method is capable of automatically perform clustering-based image thresholding \cite{Sezgin} or reduction of the gray level image to a binary image, single optimal threshold not eligible to segment desired region (e.g., blood vessels). To be specific, Fig. 4 (b) is close-up image which applied single level Otsu\rq s  threshold method that generated from Fig. 4 (a). Because raw Nissl stained image tends to have a noise acquired from data acquisition step (e.g., knife chatter and image blurred phenomenon due to speed of acquisition by KESM). Also, there is blurred area in Nissl stained image, Fig 4.(a), distinctive division is necessary to segment desired region. Therefore, we exploited Anisotropic Diffusion filtering and Median image filtering method in order to make a breakthrough the deficiencies for segmenting desired region.\\ 
 \begin{figure}
         \centering
         \begin{subfigure}{0.23\textwidth}
@@ -720,7 +720,7 @@ $$
         
         \caption{\textbf{Median filtering principle.} (a) Image with a noise in the center with pixel
 value (150), surrounded by correct neighboring values. (b) The median filtering result. The noise pixel value 150 is replaced with 124, so that the distinctive
-pixel value is smoothed to be similar to neighboring pixel values. Adapted from \cite{Justusson} \cite{Dongkun}}. 
+pixel value is smoothed to be similar to neighboring pixel values. Adapted from \cite{Justusson} \cite{Dongkun}.} 
 \label{fig8}
 \end{figure}
 
@@ -753,7 +753,7 @@ Therefore, by using the multi-layer threshold algorithm, we derived the distinct
 
 \subsubsection{\textbf{Rescale intensity}}
 
-The previous result has been transformed in numerical pixel type since we used CurvurtureAnisoDiffusion class in SimpleITK, the image needs to be rescaled in gray scale intensity, maximum to 255 and minimum to 0, because we wish to extract highest level intensity among 5 levels of intensity. This applies a linear transformation to the intensity level of the input image\cite{Lowekamp}. Following equation will mapping the intensity values.
+The previous result has been transformed in numerical pixel type since we used CurvurtureAnisoDiffusion class in SimpleITK \cite{Lowekamp}, the image needs to be rescaled in gray scale intensity, maximum to 255 and minimum to 0, because we wish to extract highest level intensity among 5 levels of intensity. This applies a linear transformation to the intensity level of the input image. Following equation will mapping the intensity values.
 
 $$
 outputPixel=(inputPixel-inputMin)\times
@@ -786,7 +786,7 @@ In this section, preprocessing (image segmentation) step considers a cornerstone
 
 \subsection{\textbf{3D volume data reconstruction}}
 
-The 3D volume data was processed to show a three-dimensional view. The KESM data is basically a large 3D image stack consisting of 2D images. The three-dimensional visualization methods help us better explore the KESM data.\cite{Wenjie} David M. Mayerich who was one of the members of BNL, he developed KESM stack processor which enables to stack the 2D image sequence to a small 3D volumetric file. We used KESM stack processor program for reconstructing 3D volumetric file using our segmented stained Nissl data set. Fig 9. shows the set view of 3D image volume data which rendered by KESM stack processor and visualized by a visualization tool kit (paraview).  
+The 3D volume data was processed to show a three-dimensional view. The KESM data is basically a large 3D image stack consisting of 2D images. The three-dimensional visualization methods help us better explore the KESM data \cite{Wenjie}. David M. Mayerich who was one of the members of BNL, he developed KESM stack processor which enables to stack the 2D image sequence to a small 3D volumetric file. We used KESM stack processor program for reconstructing 3D volumetric file using our segmented stained Nissl data set. Fig 9. shows the set view of 3D image volume data which rendered by KESM stack processor and visualized by a visualization tool kit (paraview).  
 
 \subsection{\textbf{Rendering center-lines}}
 
@@ -956,45 +956,28 @@ Yoonsuck Choe, David Mayerich, Jaerock Kwon, Daniel E. Miller, Ji Ryang Chung,Ch
 \hskip 1em plus 0.5em minus 0.4em Neural Networks (IJCNN), The 2011 International Joint Conference, July 31 2011-Aug. 5 2011, pp. 2258$\sim$2265
   
 %[11]  
-\bibitem{wenjie}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 2014.
+\bibitem{Still}
+Still, Michael, \emph{The definitive guide to ImageMagick. Vol. 1.} \hskip 1em plus 0.5em minus 0.4em Berkeley: Apress, 2006.
 
 %[12]
-\bibitem{Berislav}
-Burials Zlokovic, \emph{The blood-brain barrier in health and chronic neurodegenerative disorders} \hskip 1em plus 0.5em minus 0.4em Neuron, vol. 57, pp. 178$\sim$201, 2008.
-
-%[13]
-\bibitem{Choe2010}
-Y. Choe, L. C. Abbott, D. E. Miller, D. Han, H.-F. Yang, J. R. Chung, C. Sung, D.
-Mayerich, J. Kwon, K. Micheva, and S. J. Smith. \emph{Multiscale imaging, analysis,
-and integration of mouse brain networks.}, \hskip 1em plus 0.5em minus 0.4em Neuroscience Meeting Planner. San Diego, CA: Society for Neuroscience, 2010.
-
-%[14]
 \bibitem{Wenjie}
 Wenjie Yang, \emph{Automated neurovascular tracing and analysis of the Knife=Edge Scanning Microscope India Ink Data Set.}, \hskip 1em plus 0.5em minus 0.4em Texas A\&M\ University, 2014.
+
+%[13]
+\bibitem{Sezgin}
+Sezgin and B. Sankur, \emph{Survey over image thresholding techniques and quantitative performance evaluation.}  \hskip 1em plus 0.5em minus 0.4em Journal of Electronic Imaging13 (1): 146$\sim$165. 2004.
+
+%[14]
+\bibitem{Pietro}
+Pietro Perona and Jitendra Malik, \emph{Scale-space and edge detection using anisotropic diffusion.} \hskip 1em plus 0.5em minus 0.4em IEEE Transactions on Pattern Analysis and Machine Intelligence, 12 (7): 629$\sim$639, 1990.
 
 %[15]
 \bibitem{Dongkun}
 Dongkun Kim, \emph{Autonomic Seedpoint and Tracing of Microstructures in the Knife-Edge Scanning Microscope Mouse Brain Data Set}, \hskip 1em plus 0.5em minus 0.4em Texas A\&M\ University, 2011.
 
 %[16]
-\bibitem{Sezgin}
-Sezgin and B. Sankur, \emph{Survey over image thresholding techniques and quantitative performance evaluation.}  \hskip 1em plus 0.5em minus 0.4em Journal of Electronic Imaging13 (1): 146$\sim$165. 2004.
-
-%[17]
 \bibitem{Lowekamp}
 Lowekamp, Bradley C., et al. \emph{The Design of SimpleITK.} \hskip 1em plus 0.5em minus 0.4em Frontiers in neuroinformatics 7, 2013.
-
-%[18]
-\bibitem{Pietro}
-Pietro Perona and Jitendra Malik, \emph{Scale-space and edge detection using anisotropic diffusion.} \hskip 1em plus 0.5em minus 0.4em IEEE Transactions on Pattern Analysis and Machine Intelligence, 12 (7): 629$\sim$639, 1990.
-
-%[19]
-\bibitem{Still}
-Still, Michael, \emph{The definitive guide to ImageMagick. Vol. 1.} \hskip 1em plus 0.5em minus 0.4em Berkeley: Apress, 2006.
-
-
 
 \end{thebibliography}
 
