@@ -1,4 +1,4 @@
-%% Updated 12_13_2014_18:24
+%% Updated 12_13_2014_19:04
 
 
 %% bare_conf.tex
@@ -692,7 +692,19 @@ Anisotropic diffusion is an iterative process until a sufficient smoothing is ob
 
 \subsubsection{\textbf{Median filtering}}
 
-\begin{figure}[b]
+Median filtering is a nonlinear filtering that often uses for noise reduction in digital signal processing as well as digital image processing. Median filtering is effective not only excellent in noise reduction, but also preserving edges. However, it requires large cost of computing depends on size of filtering mask. Fig. 8 shows an example of Median filtering. Each neighboring pixel values replaces each entry with the median of neighboring entries. All immediate pixel values in the window are reordered in ascending sequence and calculate the median value in single array. Then, the calculated median value, in this case 124 in Fig 8.(b), replaces with center value (pixel) of the window, therefore, each entry pixel value has been smoothing by surrounding pixel values. 
+
+$$
+\emph{Rx,g = N $\lfloor$ n / 2 $\rfloor$}\\
+$$
+
+where,
+
+$$
+\emph{Rx,g : median pixel value.}
+$$
+
+\begin{figure}
         \centering
         \begin{subfigure}{0.23\textwidth}
                 \includegraphics[width=\textwidth]{median_filter_principle.jpg}
@@ -712,19 +724,7 @@ pixel value is smoothed to be similar to neighboring pixel values. Adapted from 
 \label{fig8}
 \end{figure}
 
-Median filtering is a nonlinear filtering that often uses for noise reduction in digital signal processing as well as digital image processing. Median filtering is effective not only excellent in noise reduction, but also preserving edges. However, it requires large cost of computing depends on size of filtering mask. Fig. 8 shows an example of Median filtering. Each neighboring pixel values replaces each entry with the median of neighboring entries. All immediate pixel values in the window are reordered in ascending sequence and calculate the median value in single array. Then, the calculated median value, in this case 124 in Fig 8.(b), replaces with center value (pixel) of the window, therefore, each entry pixel value has been smoothing by surrounding pixel values. 
-
-$$
-\emph{Rx,g = N $\lfloor$ n / 2 $\rfloor$}\\
-$$
-
-where,
-
-$$
-\emph{Rx,g : median pixel value.}
-$$
-
-In this project, the raw Nissl stained image data has noise and artifact in sectioned imaged while data acquisition by KESM. Fig 7.(b) displays that has uneven area and knife chatter which leads to significant information loss. Compared with Fig 7.(a), most part of the damaged area in (b) has no stem and cerebrum information. Due to knife vibration while image sampling, the quality of sectioned image has been degraded, moreover, it is impossible to revoke each sectioned result after cutting the mouse brain because the sectioned surface of each tissue by the microscopy will not be reconstructed. In addition, on the top right of Fig 7.(b) shows high frequency chatter due to knife vibration. In this sense, Median filtering is inevitable procedure to compensate information lossy region. 
+In this paper, the raw Nissl stained image data has noise and artifact in sectioned imaged while data acquisition by KESM. Fig 7.(b) displays that has uneven area and knife chatter which leads to significant information loss. Compared with Fig 7.(a), most part of the damaged area in (b) has no stem and cerebrum information. Due to knife vibration while image sampling, the quality of sectioned image has been degraded, moreover, it is impossible to revoke each sectioned result after cutting the mouse brain because the sectioned surface of each tissue by the microscopy will not be reconstructed. In addition, on the top right of Fig 7.(b) shows high frequency chatter due to knife vibration. In this sense, Median filtering is inevitable procedure to compensate information lossy region. 
 
 
 \subsection{\textbf{Image segmentation (Extract specific region)}}
@@ -764,25 +764,12 @@ $$\\
 
 After rescaling intensity, we extracted highest intensity level that tends to contain blood vessel. Fig 7.(b) displays the final result of the image segmentation.\\ 
 
-\section{\textbf{Development Environment}}
-
-\begin{flushleft}
-- simpleITK\\
-- Visual studio 2010 (C++)\\
-- Python\\
-- ImageMagick\\
-- H5\\
-- KESMstackProcessor\\
-- ImageJ\\
-- Paraview\\
-\end{flushleft}
-
-\section{\textbf{Results}}
-
 In this section, preprocessing (image segmentation) step considers a cornerstone to render appropriate center-line. By using this, we reconstructed the vectorized 3D volume in Nissl stained image. Although several high frequency knife chatter region and lighting noise still not segmented properly, the result that obtained from applying Multi-layer threshold method is promising due to the fact that vector tracing based algorithm will reject non-contiguous pixel, along with x-y-z coordinates in the stack of 2D images. In other words, vector tracing based algorithm is robust to noise, if the noise has no continuous relevance. 
 
 
 \subsection{\textbf{3D volume data reconstruction}}
+
+The 3D volume data was processed to show a three-dimensional view. The KESM data is basically a large 3D image stack consisting of 2D images. The three-dimensional visualization methods help us better explore the KESM data.\cite{Wenjie} David M. Mayerich who was one of the members of BNL, he developed KESM stack processor which enables to stack the 2D image sequence to a small 3D volumetric file. We used KESM stack processor program for reconstructing 3D volumetric file using our segmented stained Nissl data set.
 
 \begin{figure}
         \centering
@@ -827,13 +814,13 @@ In this section, preprocessing (image segmentation) step considers a cornerstone
 
 \subsection{\textbf{Automatic elimination of duplicated capillaries}}
 
-Seed points on the six surfaces of the 3D volume data reconstruction were generated. However, while tracing the vascular 3D volume, the same part of vessel might be traced multiple times if multiple seed points on different surfaces lead to the same vessel. As a result, duplicated tracing results with different  tracing directions can exist for a single vessel and the processing time increased. Tracing from all the seed points on every surfaces of the volume would reduce missed vessels, but the redundant seed points can cause the duplicated tracing issue at the same time \cite{Wenjie}. We made a algorithm for solving the problem of duplicated tracing result.  Algorithm 1 is the pseudo code of  elimination of duplicated capillaries. Fig.10 shows the results of the tracing vascular from two seed points. They found a same vascular approaching from the other direction\rq s seed points. This shows that number 1 and number 2 are duplicated, which is the same capillary.
-First, we retrieve the seed point data and its list of branches. Second, check the seed point of \circled{1} in Fig 1 and the other\rq s end point of its capillary \circled{2} in Fig 10. If each x-y-z coordinate are in close boundary by calculating Manhattan distance, check the endpoint of \circled{1} and the other seed point of \circled{2}, applying the same distance measurement for each x-y-z coordinate. We can assume that if those which are in the same boundary are meet the segmentation criteria as well as vice versa, there are duplicated. For further understanding,  we set the value of the boundary as 4, which is heuristic founding by manual elimination. Third, eliminate one of duplicated capillaries and keep tracking next seed point whether they are in the boundary or not. Algorithm 1 is our pseudo code.\\
-After applying algorithm, the result has been enhanced compared with not eliminated capillaries. Fig 11. (a) shows the not applying the automatic elimination algorithm and Fig 11. (b) indicates the result after applying the algorithm. We can see the difference between them. Also, the complexity, in this case the vtk size and its coordinates, has been enormously reduced.
+Seed points on the six surfaces of the 3D volume data reconstruction were generated by Faltbox traversing that stated above. However, while tracing the vascular 3D volume, the same centerline of vessel might be traced multiple times if duplicated seed points in the particular boundary on different surfaces shows to duplicated capillaries. As a result, duplicated tracing results with different tracing directions can be existed for a single vessel and the processing time increased. Tracing from all the seed points on every surfaces of the volume would prevent omitting  microvascular, but the redundant seed points can cause the duplicated tracing issue at the same time. \cite{Wenjie} We made a algorithm for solving the problem of duplicated tracing result. Algorithm 1 is the pseudocode of  elimination of duplicated capillaries. Fig.10 shows the results of the tracing vascular from two seed points. They found same vasculars approaching from the other direction’s seed points. This shows that number 1 and number 2 are duplicated, which is the same capillary.
+First, we retrieve the seed point data and its list of branches. Second, check the seed point of \circled{1} in Fig 1 and the other’s end point of its capillary \circled{2} in Fig 10. If each x-y-z coordinate are in close boundary by calculating Manhattan distance, check the endpoint of \circled{1} and the other seed point of \circled{2}, applying the same distance measurement for each x-y-z coordinate. We can assume that if those which are in the same boundary are meet the segmentation criteria as well as vice versa, there are duplicated. For further understanding, we set the value of the boundary as 5, which is heuristic founding by manual elimination. Third, eliminate one of duplicated capillaries and keep tracking next seed point whether they are in the boundary or not. Algorithm 1 is the pseudocode of the automatic elimination process.\\
+After applying algorithm, the result has been enhanced compared with not eliminated capillaries. Fig 2. (a) shows the not applying the automatic elimination algorithm and Fig 12. (b) indicates the result after applying the algorithm.  
 
 \begin{figure}
         \centering
-        \includegraphics[width=0.34\textwidth]{algorithm.jpg}
+        \includegraphics[width=0.35\textwidth]{algorithm.jpg}
         \caption{\textbf{Algorithm of elimination of duplicated capillaries}}
 		\label{fig11}
 \end{figure}
@@ -870,13 +857,13 @@ After applying algorithm, the result has been enhanced compared with not elimina
 
 \begin{figure}
         \centering
-        \begin{subfigure}{0.4\textwidth}
+        \begin{subfigure}{0.35\textwidth}
                 \includegraphics[width=\textwidth]{original.jpg}
                 \caption{Original}
                 \label{fig:original}
         \end{subfigure}
         \hfill 
-        \begin{subfigure}{0.4\textwidth}
+        \begin{subfigure}{0.35\textwidth}
                 \includegraphics[width=\textwidth]{elimination.jpg}
                 \caption{Elimination}
                 \label{fig:elimination}
@@ -889,8 +876,8 @@ After applying algorithm, the result has been enhanced compared with not elimina
 
 \section{\textbf{Conclusion and Future work}}
 
-Nissl Stained raw images have various type of noises. By using image processing techniques that we have learned in class, we successfully segmented the desired region with pixel size 500 X 500. We will segment those region with more bigger size and more images of Nissl stained image such as 2000 X 2000.
-
+In our project, we obtained Nissl Stained raw images using KESM which have various type of noises. So, we used many kinds of  image processing techniques that we have learned in the class. Finally, we successfully segmented the desired region with 100 images of 500$\times$500 pixel size. Also using segmented Nissl stained data set, we rendered 3D reconstruction with center-line. At last, we described our current research about automatic elimination duplicated capillaries. 
+In future, we will segment those region with more bigger size and more images of Nissl stained image such as 1000$\times$1000 or 2000$\times$2000.
 
 
 % trigger a \newpage just before the given reference
