@@ -1,4 +1,4 @@
-%% Updated 12_14_2014_21:50
+%% Updated 12_14_2014_21:22
 
 %% bare_conf.tex
 %% V1.3
@@ -657,7 +657,7 @@ Anisotropic diffusion is an iterative process until a sufficient smoothing is ob
 
 \subsubsection{\textbf{Median filtering}}
 
-Median filtering is a nonlinear filtering that often uses for noise reduction in digital signal processing as well as digital image processing. Median filtering is effective not only excellent in noise reduction, but also preserving edges. However, it requires large cost of computing depends on size of filtering mask. Fig. 5 shows an example of Median filtering. Each neighboring pixel values replaces each entry with the median of neighboring entries. All immediate pixel value in the window are reordered in ascending sequence and calculate the median value in single array. Then, the calculated median value, in this case 124 in Fig. 5 (b), replaces with center value (pixel) of the window, therefore, each entry pixel value has been smoothing by surrounding pixel values. Following equation is the principle of Median filtering.
+Median filtering is a nonlinear filtering that often uses for noise reduction in digital signal processing as well as digital image processing. Median filtering is effective not only excellent in noise reduction, but also preserving edges. However, it requires large cost of computing depends on size of filtering mask. Fig. 5 shows an example of Median filtering. Each neighboring pixel values replaces each entry with the median of neighboring entries. All immediate pixel value in the window are reordered in ascending sequence and calculate the median value in single array. Then, the calculated median value, in this case 124 in Fig. 5 (b), replaces with center value (pixel) of the window, therefore, each entry pixel value has been smoothing by surrounding pixels value. Following equation is the principle of Median filtering.
 
 $$
 \emph{Rx,g = N $\lfloor$ n / 2 $\rfloor$}\\
